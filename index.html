@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>K-EV Charge Guide</title>
+<style>
+:root{--p:#0a7cff;--g:#12b76a;--w:#f79009;--r:#f04438;--bg:#f4f6fb;--t:#101828;--m:#667085}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic","Segoe UI",Roboto,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--t);background:#dfe5ef}
+body.zh .en,body.ko .en,body:not(.zh) .zh,body:not(.ko) .ko{display:none!important}
+#phone{max-width:430px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative;overflow-x:clip}
+@media(min-width:600px){body{padding:30px 0}#phone{width:390px;height:844px;min-height:0;border-radius:44px;border:12px solid #111;box-shadow:0 20px 60px #0004;overflow-y:auto}}
+header{position:sticky;top:0;z-index:5;background:linear-gradient(135deg,#0a7cff,#0055d4);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px}
+header h1{font-size:17px;margin:0;flex:1}.back{background:#fff3;border:0;color:#fff;font-size:18px;border-radius:10px;width:34px;height:34px;cursor:pointer}
+.lang{display:flex;background:#fff3;border-radius:20px;padding:3px}.lang button{border:0;background:none;color:#fff;font-weight:700;padding:5px 8px;border-radius:16px;cursor:pointer;font-size:12px}
+.lang button.on{background:#fff;color:var(--p)}
+.sos{background:var(--r);color:#fff;border:0;border-radius:10px;padding:7px 10px;font-weight:800;cursor:pointer}
+main{padding:16px}.screen{display:none}.screen.on{display:block}
+.hero{background:#fff;border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:0 2px 8px #0000000d}.hero b{font-size:19px}.hero p{margin:6px 0 0;color:var(--m);font-size:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tile{background:#fff;border:0;border-radius:18px;padding:18px 12px;text-align:left;cursor:pointer;box-shadow:0 2px 8px #0000000f;font-size:15px;font-weight:700;color:var(--t);min-height:108px}
+.tile .i{font-size:32px;display:block;margin-bottom:8px}.tile.wide{grid-column:span 2;background:var(--p);color:#fff;min-height:auto;display:flex;align-items:center;gap:12px}
+.tile.wide .i{margin:0}.tile.sosT{background:#fff0ef;color:var(--r)}
+.card{background:#fff;border-radius:16px;padding:14px 16px;margin-bottom:12px;box-shadow:0 2px 8px #0000000d;font-size:14.5px;line-height:1.5}
+.card h3{margin:0 0 6px;font-size:16px}.muted{color:var(--m);font-size:12.5px}
+.badge{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:4px;vertical-align:middle}
+.ok{background:#e7f8ef;color:#067647}.warn{background:#fff4e5;color:#b54708}
+.kr{background:#eef4ff;color:#0040a8;padding:1px 6px;border-radius:6px;font-weight:700}
+.steps{display:flex;gap:6px;margin-bottom:12px}.steps span{flex:1;height:6px;border-radius:3px;background:#d0d5dd}.steps span.on{background:var(--p)}
+.ill{background:linear-gradient(180deg,#eaf3ff,#fff);border-radius:16px;display:flex;justify-content:center;padding:12px;margin-bottom:12px}
+.nav{display:flex;gap:10px;margin-top:6px}.btn{flex:1;border:0;border-radius:14px;padding:14px;font-size:16px;font-weight:700;cursor:pointer;background:var(--p);color:#fff}.btn.sec{background:#e4e7ec;color:var(--t)}
+details{background:#fff;border-radius:14px;margin-bottom:10px;padding:12px 14px;box-shadow:0 2px 8px #0000000d;font-size:14.5px}summary{font-weight:700;cursor:pointer}
+a.call,a.link{display:flex;align-items:center;gap:12px;background:#fff;border-radius:16px;padding:14px;margin-bottom:10px;text-decoration:none;color:var(--t);box-shadow:0 2px 8px #0000000d}
+a.call .n{font-size:20px;font-weight:800;color:var(--g);min-width:110px}a.call.red .n{color:var(--r)}
+table{width:100%;border-collapse:collapse;font-size:13.5px}td{padding:6px 4px;border-bottom:1px solid #eaecf0}
+.big{font-size:22px;font-weight:800;text-align:center;padding:18px;background:#fffbe6;border:2px dashed var(--w);border-radius:16px;margin-bottom:10px}
+</style></head>
+<body><div id="phone">
+<header><button class="back" id="back" onclick="go('home')" style="visibility:hidden">‹</button>
+<h1 id="ttl"></h1>
+<div class="lang"><button id="bEN" class="on" onclick="setL('en')">EN</button><button id="bZH" onclick="setL('zh')">繁中</button><button id="bKO" onclick="setL('ko')">한국어</button></div>
+<button class="sos" onclick="go('sos')">SOS</button></header>
+<main>
+
+<!-- HOME -->
+<section class="screen on" id="home" data-en="K-EV Charge Guide" data-zh="韓國電動車充電指南" data-ko="외국인 전기차 충전 가이드">
+<div class="hero"><b class="en">Charge your EV in Korea ⚡</b><b class="zh">在韓國為電動車充電 ⚡</b><b class="ko">한국에서 전기차 충전하기 ⚡</b>
+<p class="en">Know what to press and how to pay — in 3 minutes.</p><p class="zh">3 分鐘了解該按什麼、怎麼付款。</p><p class="ko">3분이면 무엇을 누르고 어떻게 결제할지 알 수 있어요.</p></div>
+<div class="grid">
+<button class="tile wide" onclick="go('guide')"><span class="i">🔌</span><span><span class="en">Start: 5-step charging guide</span><span class="zh">開始：5 步驟充電指南</span><span class="ko">시작: 5단계 충전 가이드</span></span></button>
+<button class="tile" onclick="go('pay')"><span class="i">💳</span><span class="en">How to pay</span><span class="zh">付款方式</span><span class="ko">결제 방법</span></button>
+<button class="tile" onclick="go('conn')"><span class="i">🔍</span><span class="en">Which plug?</span><span class="zh">哪種充電槍？</span><span class="ko">어떤 커넥터?</span></button>
+<button class="tile" onclick="go('find')"><span class="i">📍</span><span class="en">Find chargers</span><span class="zh">尋找充電站</span><span class="ko">충전소 찾기</span></button>
+<button class="tile" onclick="go('rules')"><span class="i">⏱️</span><span class="en">Rules & fees</span><span class="zh">規定與費用</span><span class="ko">규칙과 요금</span></button>
+<button class="tile" onclick="go('faq')"><span class="i">❓</span><span class="en">FAQ</span><span class="zh">常見問題</span><span class="ko">자주 묻는 질문</span></button>
+<button class="tile sosT" onclick="go('sos')"><span class="i">🆘</span><span class="en">Emergency & help</span><span class="zh">緊急與求助</span><span class="ko">긴급 연락·도움</span></button>
+</div>
+<p class="muted" style="text-align:center;margin-top:16px"><span class="en">Information last checked: 2026-10-20 · This app is a guide and does not process payments.</span><span class="zh">資訊最後確認：2026-10-20 · 本 App 僅提供指南，不代為付款。</span><span class="ko">정보 최종 확인일: 2026-10-20 · 이 앱은 안내용이며 결제를 대신 처리하지 않습니다.</span></p>
+</section>
+
+<!-- GUIDE -->
+<section class="screen" id="guide" data-en="Charging Guide" data-zh="充電指南" data-ko="충전 가이드">
+<div class="steps" id="bar"><span></span><span></span><span></span><span></span><span></span></div>
+<div id="stepBox"></div>
+<div class="nav"><button class="btn sec" onclick="step(-1)"><span class="en">‹ Back</span><span class="zh">‹ 上一步</span><span class="ko">‹ 이전</span></button><button class="btn" id="nextB" onclick="step(1)"></button></div>
+<div class="card" style="margin-top:14px"><h3><span class="en">Korean screen words</span><span class="zh">韓文畫面用語</span><span class="ko">충전기 화면 주요 문구</span></h3>
+<table><tr><td class="kr">충전 시작</td><td><span class="en">Start</span><span class="zh">開始充電</span><span class="ko">충전 시작</span></td></tr>
+<tr><td class="kr">비회원</td><td><span class="en">Non-member</span><span class="zh">非會員</span><span class="ko">비회원</span></td></tr>
+<tr><td class="kr">신용카드</td><td><span class="en">Credit card</span><span class="zh">信用卡</span><span class="ko">신용카드</span></td></tr>
+<tr><td class="kr">회원카드</td><td><span class="en">Member card</span><span class="zh">會員卡</span><span class="ko">회원카드</span></td></tr>
+<tr><td class="kr">충전 중</td><td><span class="en">Charging</span><span class="zh">充電中</span><span class="ko">충전 중</span></td></tr>
+<tr><td class="kr">충전 종료</td><td><span class="en">Stop</span><span class="zh">結束充電</span><span class="ko">충전 종료</span></td></tr></table></div>
+</section>
+
+<!-- PAY -->
+<section class="screen" id="pay" data-en="How to Pay" data-zh="付款方式" data-ko="결제 방법">
+<div class="card"><span class="en">Korean chargers are run by many different operators, and payment options vary by charger. Check the screen for "Member card", "Credit card/Non-member", or a QR code.</span><span class="zh">韓國充電樁由多家業者經營，付款方式因充電樁而異。請在螢幕上尋找「會員卡」、「信用卡／非會員」或 QR 碼。</span><span class="ko">한국 충전기는 여러 운영사가 운영하며, 결제 방법은 충전기마다 다릅니다. 화면에서 '회원카드', '신용카드/비회원' 또는 QR 코드를 찾아보세요.</span></div>
+<div class="card"><h3>💳 <span class="en">Credit card at fast charger</span><span class="zh">在快充樁刷信用卡</span><span class="ko">급속 충전기에서 신용카드 결제</span></h3>
+<span class="en">Most fast chargers offer non-member card payment (some slow chargers too). Choose <span class="kr">신용카드/비회원</span>. A pre-authorized amount may be charged first and the unused part refunded later (timing varies by operator).</span><span class="zh">多數快充樁提供非會員信用卡付款（部分慢充亦可）。請選 <span class="kr">신용카드/비회원</span>。可能先預授權一筆金額，充電後再退回未使用部分（退款時間依業者而異）。</span><span class="ko">대부분의 급속 충전기(일부 완속 포함)는 비회원 신용카드 결제를 지원합니다. <span class="kr">신용카드/비회원</span>을 선택하세요. 먼저 일정 금액이 선결제(승인)되고, 사용하지 않은 금액은 나중에 환불될 수 있습니다(시기는 운영사마다 다름).</span></div>
+<div class="card" style="border-left:5px solid var(--w)"><h3>⚠️ <span class="en">Foreign cards</span><span class="zh">海外信用卡</span><span class="ko">해외 발급 카드</span><span class="badge warn"><span class="en">Varies</span><span class="zh">不一定</span><span class="ko">상황별 상이</span></span></h3>
+<span class="en">Acceptance of overseas-issued cards is <b>not guaranteed</b> and varies by operator and terminal. Have a backup (e.g., a Korean-issued card) and call the number on the charger if payment fails.</span><span class="zh">海外發行的卡片<b>不保證可用</b>，依業者與刷卡機而異。請準備替代方案（例如韓國發行卡片），付款失敗時請撥打充電樁上的客服電話。</span><span class="ko">해외에서 발급된 카드는 <b>사용이 보장되지 않으며</b>, 운영사와 단말기에 따라 다릅니다. 대안(예: 국내 발급 카드)을 준비하고, 결제가 안 되면 충전기에 적힌 번호로 전화하세요.</span></div>
+<div class="card"><h3>🪪 <span class="en">Membership cards</span><span class="zh">會員卡</span><span class="ko">회원카드</span><span class="badge warn"><span class="en">Limited</span><span class="zh">有限制</span><span class="ko">제한 있음</span></span></h3>
+<span class="en">Each operator has its own member card/app; many require a Korean phone number and Korean payment method. The Ministry (Climate, Energy & Environment) membership card works across networks via roaming, but is issued only to eligible EV owners — usually not available to short-term visitors or renters. Residents: ask 1661-9408.</span><span class="zh">各業者有自己的會員卡／App，多數需要韓國手機號碼與韓國付款方式。氣候能源環境部會員卡可跨業者漫遊使用，但僅發給符合資格的電動車車主，短期旅客或租車者通常無法申請。長期居留者可洽 1661-9408。</span><span class="ko">운영사마다 자체 회원카드/앱이 있으며, 대부분 한국 휴대폰 번호와 국내 결제수단이 필요합니다. 기후에너지환경부 멤버십카드는 로밍으로 여러 운영사 충전기에서 쓸 수 있지만, 자격을 갖춘 전기차 소유자에게만 발급되어 단기 방문객이나 렌터카 이용자는 대개 발급받기 어렵습니다. 체류 외국인은 1661-9408로 문의하세요.</span></div>
+<div class="card"><h3>📱 <span class="en">QR / app payment</span><span class="zh">QR／App 付款</span><span class="ko">QR / 앱 결제</span><span class="badge warn"><span class="en">May need sign-up</span><span class="zh">可能需註冊</span><span class="ko">가입 필요할 수 있음</span></span></h3>
+<span class="en">Some chargers (e.g., Seoul public chargers) support QR payment via Korean apps. These may require sign-up and a payment method.</span><span class="zh">部分充電樁（如首爾市公共充電樁）支援透過韓國 App 掃碼付款，可能需要註冊並綁定付款方式。</span><span class="ko">일부 충전기(예: 서울시 공공 충전기)는 국내 앱을 통한 QR 결제를 지원합니다. 회원가입과 결제수단 등록이 필요할 수 있습니다.</span></div>
+<div class="card"><h3>🙅 <span class="en">Paid but not charging?</span><span class="zh">已付款但未充電？</span><span class="ko">결제했는데 충전이 안 되나요?</span></h3>
+<span class="en">Don't pay again. Note the charger ID and time, and call the operator.</span><span class="zh">請勿重複付款。記下充電樁編號與時間，並聯絡業者客服。</span><span class="ko">다시 결제하지 마세요. 충전기 번호와 시간을 기록하고 운영사에 연락하세요.</span></div>
+</section>
+
+<!-- CONNECTOR -->
+<section class="screen" id="conn" data-en="Which Plug?" data-zh="哪種充電槍？" data-ko="어떤 커넥터?">
+<div class="card" style="background:#eaf3ff"><b class="en">Fast chargers usually use DC Combo. Compare with your car's charging port.</b><b class="zh">快充通常為 DC Combo。請與車輛充電口比對。</b><b class="ko">급속 충전기는 보통 DC콤보를 씁니다. 차량 충전구와 비교해 보세요.</b></div>
+<div class="card"><h3>⚡ DC Combo (CCS1, 7-pin) <span class="badge ok"><span class="en">Most common fast</span><span class="zh">最常見快充</span><span class="ko">가장 흔한 급속</span></span></h3>
+<svg width="70" height="80" viewBox="0 0 70 80"><circle cx="35" cy="28" r="24" fill="#eef4ff" stroke="#0a7cff" stroke-width="3"/><circle cx="25" cy="20" r="4"/><circle cx="45" cy="20" r="4"/><circle cx="35" cy="34" r="4"/><circle cx="22" cy="36" r="3"/><circle cx="48" cy="36" r="3"/><rect x="15" y="56" width="40" height="20" rx="8" fill="#eef4ff" stroke="#0a7cff" stroke-width="3"/><circle cx="27" cy="66" r="4"/><circle cx="43" cy="66" r="4"/></svg>
+<div class="en">Korea's standard fast-charging plug.</div><div class="zh">韓國標準快充接頭。</div><div class="ko">국내 표준 급속 충전 커넥터입니다.</div></div>
+<div class="card"><h3>🔌 AC 5-pin <span class="badge ok"><span class="en">Slow</span><span class="zh">慢充</span><span class="ko">완속</span></span></h3>
+<svg width="70" height="60" viewBox="0 0 70 60"><circle cx="35" cy="30" r="24" fill="#e7f8ef" stroke="#12b76a" stroke-width="3"/><circle cx="25" cy="22" r="4"/><circle cx="45" cy="22" r="4"/><circle cx="35" cy="36" r="4"/><circle cx="22" cy="38" r="3"/><circle cx="48" cy="38" r="3"/></svg>
+<div class="en">Standard slow (AC single-phase) plug. Takes about 4–6 hours.</div><div class="zh">標準慢充（交流單相）接頭，約需 4–6 小時。</div><div class="ko">표준 완속(AC 단상) 커넥터입니다. 약 4~6시간 걸립니다.</div></div>
+<div class="card"><h3>🔋 CHAdeMO (10-pin) <span class="badge warn"><span class="en">Older cars</span><span class="zh">舊款車</span><span class="ko">구형 차량</span></span></h3>
+<svg width="70" height="60" viewBox="0 0 70 60"><circle cx="35" cy="30" r="25" fill="#fff4e5" stroke="#f79009" stroke-width="3"/><circle cx="25" cy="30" r="6"/><circle cx="45" cy="30" r="6"/><circle cx="35" cy="16" r="3"/><circle cx="35" cy="44" r="3"/></svg>
+<div class="en">Used by some older vehicles. AC 3-phase (7-pin) also exists on some older cars.</div><div class="zh">部分舊款車使用。部分舊款車另有交流三相（7-pin）。</div><div class="ko">일부 구형 차량에서 사용합니다. 일부 구형 차량은 AC 3상(7핀)도 있습니다.</div></div>
+<div class="card"><h3>🚘 <span class="en">Tesla</span><span class="zh">Tesla 特斯拉</span><span class="ko">테슬라</span></h3>
+<div class="en">Superchargers use Tesla's own connector. On public chargers, Tesla cars need the <b>official CCS1 adapter</b>; problems with unofficial adapters are the user's responsibility. Some Superchargers are open to other EVs via the Tesla app <span class="badge warn">may change</span>.</div>
+<div class="zh">超級充電站使用特斯拉專用接頭。在公共充電樁，特斯拉需使用<b>原廠 CCS1 轉接頭</b>；使用非原廠轉接頭的問題由使用者自行負責。部分超級充電站透過特斯拉 App 開放給其他品牌 <span class="badge warn">可能變動</span>。</div><div class="ko">슈퍼차저는 테슬라 전용 커넥터를 씁니다. 공공 충전기에서는 테슬라 차량에 <b>정식 CCS1 어댑터</b>가 필요하며, 비정식 어댑터로 인한 문제는 사용자 책임입니다. 일부 슈퍼차저는 테슬라 앱을 통해 타사 전기차에도 개방되어 있습니다 <span class="badge warn">변경될 수 있음</span>.</div></div>
+</section>
+
+<!-- FIND -->
+<section class="screen" id="find" data-en="Find Chargers" data-zh="尋找充電站" data-ko="충전소 찾기">
+<a class="link" href="https://ev.or.kr/nportal/main.do" target="_blank" rel="noopener"><span style="font-size:28px">🗺️</span><div><b>ev.or.kr</b><div class="muted"><span class="en">Official national charger map & fees · Korean</span><span class="zh">官方全國充電站地圖與費率 · 韓文</span><span class="ko">공식 전국 충전소 지도·요금 · 한국어</span></div></div></a>
+<a class="link" href="https://www.plugshare.com/" target="_blank" rel="noopener"><span style="font-size:28px">🔌</span><div><b>PlugShare</b><div class="muted"><span class="en">Global app, shows Korean stations · English</span><span class="zh">全球 App，可查韓國充電站 · 英文</span><span class="ko">글로벌 앱, 한국 충전소 표시 · 영어</span></div></div></a>
+<a class="link" href="https://www.electromaps.com/" target="_blank" rel="noopener"><span style="font-size:28px">📍</span><div><b>Electromaps</b><div class="muted"><span class="en">Global app · English</span><span class="zh">全球 App · 英文</span><span class="ko">글로벌 앱 · 영어</span></div></div></a>
+<p class="muted"><span class="en">Station info in third-party apps may be incomplete. Always check the charger screen.</span><span class="zh">第三方 App 資訊可能不完整，請以充電樁螢幕為準。</span><span class="ko">외부 앱 정보는 불완전할 수 있습니다. 항상 충전기 화면을 확인하세요.</span></p>
+</section>
+
+<!-- RULES -->
+<section class="screen" id="rules" data-en="Rules & Fees" data-zh="規定與費用" data-ko="규칙과 요금">
+<div class="card" style="border-left:5px solid var(--r)"><h3>⏱️ <span class="en">Time limits</span><span class="zh">停車時間限制</span><span class="ko">시간 제한</span></h3>
+<span class="en">Fast-charging bay: max <b>1 hour</b> <span class="badge warn">may change</span><br>Slow-charging bay: max <b>14 hours</b> (PHEV 7 hours)<br>Over the limit: <b>KRW 100,000</b> fine.</span>
+<span class="zh">快充車位：最多 <b>1 小時</b> <span class="badge warn">可能變動</span><br>慢充車位：最多 <b>14 小時</b>（插電混合動力 7 小時）<br>超時：罰款 <b>10 萬韓元</b>。</span><span class="ko">급속 충전구역: 최대 <b>1시간</b> <span class="badge warn">변경될 수 있음</span><br>완속 충전구역: 최대 <b>14시간</b>(PHEV 7시간)<br>초과 시: 과태료 <b>10만원</b>.</span></div>
+<div class="card"><h3>🚫 <span class="en">Not allowed</span><span class="zh">禁止事項</span><span class="ko">금지 사항</span></h3>
+<span class="en">• Non-EVs parking in charging bays, blocking access, or using the bay for other purposes: KRW 100,000<br>• Damaging bay lines or chargers on purpose: KRW 200,000<br>• Violations can be reported by anyone via the Safety Report (안전신문고) app.</span>
+<span class="zh">• 非電動車停放充電車位、堆放物品阻擋、非充電用途使用：罰款 10 萬韓元<br>• 故意損壞車位標線或充電樁：罰款 20 萬韓元<br>• 任何人皆可透過「安全申報（안전신문고）」App 檢舉。</span><span class="ko">• 일반 차량의 충전구역 주차, 물건 적재·진입 방해, 충전 외 용도 사용: 10만원<br>• 구획선이나 충전기 고의 훼손: 20만원<br>• 위반 차량은 누구나 안전신문고 앱으로 신고할 수 있습니다.</span></div>
+<div class="card"><h3>💰 <span class="en">Fees (reference)</span><span class="zh">費用（參考）</span><span class="ko">요금(참고)</span><span class="badge warn"><span class="en">may change</span><span class="zh">可能變動</span><span class="ko">변경될 수 있음</span></span></h3>
+<span class="en">Ministry public chargers: KRW 324.4/kWh (≤50kW), KRW 347.2/kWh (&gt;50kW). A 2026 fee revision (KRW 294.3–391.9/kWh) has been proposed. Private and non-member prices vary by operator — compare on ev.or.kr. Some operators may charge idle fees after charging.</span>
+<span class="zh">環境部公共充電樁：324.4 韓元/kWh（≤50kW）、347.2 韓元/kWh（&gt;50kW）。2026 年已預告費率調整（294.3–391.9 韓元/kWh）。民營及非會員費率依業者而異，可在 ev.or.kr 比較。部分業者可能於充電完成後收取佔位費。</span><span class="ko">기후부 공공 충전기: 324.4원/kWh(50kW 이하), 347.2원/kWh(50kW 초과). 2026년 요금 개편안(294.3~391.9원/kWh)이 행정예고되었습니다. 민간·비회원 요금은 운영사마다 다르니 ev.or.kr에서 비교하세요. 일부 운영사는 충전 완료 후 점유 요금을 부과할 수 있습니다.</span></div>
+<div class="card"><h3>🙂 <span class="en">Etiquette</span><span class="zh">禮儀</span><span class="ko">에티켓</span></h3>
+<span class="en">Stay near your car or leave a contact number, move right after charging, and return the cable.</span><span class="zh">充電時請留在附近或留下聯絡方式，充完立即移車，並將充電槍放回原位。</span><span class="ko">충전 중에는 차 근처에 있거나 연락처를 남기고, 완료되면 바로 이동하고, 케이블은 제자리에 걸어 두세요.</span></div>
+</section>
+
+<!-- FAQ -->
+<section class="screen" id="faq" data-en="FAQ" data-zh="常見問題" data-ko="자주 묻는 질문">
+<details><summary><span class="en">The connector won't come out</span><span class="zh">充電槍拔不出來</span><span class="ko">커넥터가 빠지지 않아요</span></summary><p><span class="en">Press Stop (충전 종료), lock and unlock the car, then try again. Do not pull by force. Still stuck? Call the number on the charger.</span><span class="zh">按下結束（충전 종료），將車輛上鎖再解鎖後重試，切勿強拉。仍無法拔出請撥打充電樁上的電話。</span><span class="ko">충전 종료를 누르고 차량을 잠갔다 해제한 뒤 다시 시도하세요. 억지로 당기지 마세요. 그래도 안 되면 충전기에 적힌 번호로 전화하세요.</span></p></details>
+<details><summary><span class="en">I paid but it's not charging</span><span class="zh">已付款但沒有充電</span><span class="ko">결제했는데 충전이 안 돼요</span></summary><p><span class="en">Don't pay again. Note the charger ID and time, and call the operator.</span><span class="zh">請勿重複付款。記下充電樁編號與時間並聯絡業者。</span><span class="ko">다시 결제하지 마세요. 충전기 번호와 시간을 기록하고 운영사에 연락하세요.</span></p></details>
+<details><summary><span class="en">When will my pre-payment be refunded?</span><span class="zh">預授權金額何時退回？</span><span class="ko">선결제 금액은 언제 환불되나요?</span></summary><p><span class="en">The unused part is refunded later; timing varies by operator (from a few hours to several business days).</span><span class="zh">未使用部分會退回，時間依業者而異（數小時至數個工作天）。</span><span class="ko">사용하지 않은 금액은 나중에 환불되며, 시기는 운영사마다 다릅니다(몇 시간~며칠(영업일)).</span></p></details>
+<details><summary><span class="en">My foreign card was declined</span><span class="zh">海外信用卡被拒</span><span class="ko">해외 카드가 거절됐어요</span></summary><p><span class="en">Foreign card acceptance varies. Try another charger/operator or call the operator.</span><span class="zh">海外卡是否可用因業者而異。可換其他充電樁／業者或聯絡客服。</span><span class="ko">해외 카드 사용 가능 여부는 운영사마다 다릅니다. 다른 충전기·운영사를 이용하거나 운영사에 문의하세요.</span></p></details>
+<details><summary><span class="en">How long can I stay?</span><span class="zh">可以停多久？</span><span class="ko">얼마나 주차할 수 있나요?</span></summary><p><span class="en">Fast: 1 hour. Slow: 14 hours (PHEV 7). Fine KRW 100,000.</span><span class="zh">快充 1 小時；慢充 14 小時（插電混動 7 小時）。罰款 10 萬韓元。</span><span class="ko">급속 1시간, 완속 14시간(PHEV 7시간). 과태료 10만원.</span></p></details>
+<details><summary><span class="en">How long does charging take?</span><span class="zh">充電要多久？</span><span class="ko">충전은 얼마나 걸리나요?</span></summary><p><span class="en">Fast (50–350kW): about 20–60 min. Slow (3–7kW): about 4–6 hours.</span><span class="zh">快充（50–350kW）約 20–60 分鐘；慢充（3–7kW）約 4–6 小時。</span><span class="ko">급속(50~350kW) 약 20~60분, 완속(3~7kW) 약 4~6시간.</span></p></details>
+</section>
+
+<!-- SOS -->
+<section class="screen" id="sos" data-en="Emergency & Help" data-zh="緊急與求助" data-ko="긴급 연락·도움">
+<a class="call red" href="tel:112"><span class="n">112</span><span><span class="en">Police</span><span class="zh">警察</span><span class="ko">경찰</span></span></a>
+<a class="call red" href="tel:119"><span class="n">119</span><span><span class="en">Fire / Ambulance</span><span class="zh">消防／救護</span><span class="ko">화재·구급</span></span></a>
+<a class="call" href="tel:1330"><span class="n">1330</span><span><span class="en">Travel Helpline, 24h, English/Chinese (from abroad +82-2-1330)</span><span class="zh">旅遊諮詢熱線，24 小時，英／中文（海外 +82-2-1330）</span><span class="ko">관광통역안내, 24시간, 영어·중국어(해외 +82-2-1330)</span></span></a>
+<a class="call" href="tel:16619408"><span class="n">1661-9408</span><span><span class="en">Ministry public fast charger helpdesk, 24h</span><span class="zh">環境部公共快充客服，24 小時</span><span class="ko">기후부 공공급속충전기 헬프데스크, 24시간</span></span></a>
+<a class="call" href="tel:16610970"><span class="n">1661-0970</span><span><span class="en">ev.or.kr call center</span><span class="zh">ev.or.kr 客服中心</span><span class="ko">무공해차 통합누리집 콜센터</span></span></a>
+<div class="card">📸 <span class="en">Other chargers: call the operator number printed on the charger. Take a photo of the charger ID and phone number.</span><span class="zh">其他充電樁：請撥打充電樁上標示的業者電話，並拍下充電樁編號與電話。</span><span class="ko">기타 충전기: 충전기에 적힌 운영사 번호로 전화하세요. 충전기 번호와 전화번호를 사진으로 찍어 두세요.</span></div>
+<p class="muted"><span class="en">Show this to a local:</span><span class="zh">出示給當地人：</span><span class="ko">주변 분께 보여 주세요:</span></p>
+<div class="big">충전기 사용을 도와주세요</div>
+<div class="big">여기 해외 카드 되나요?</div>
+</section>
+</main></div>
+<script>
+const S=[
+{i:'🅿️',en:['Park & prepare','Park in the charging bay, shift to P, and open the charging port.'],ko:['주차 및 준비','충전 구역에 주차하고 기어를 P에 둔 뒤 충전구를 여세요.'],zh:['停車準備','將車停入充電車位，排至 P 檔，打開充電口。']},
+{i:'🔌',en:['Check the connector','Fast chargers usually use <b>DC Combo (CCS1)</b>; slow chargers use <b>AC 5-pin</b>. Match the plug to your car\'s port. Tesla: use the official adapter.'],ko:['커넥터 확인','급속 충전기는 보통 <b>DC콤보(CCS1)</b>, 완속 충전기는 <b>AC 5핀</b>을 씁니다. 차량 충전구와 맞는지 확인하세요. 테슬라는 정식 어댑터를 사용하세요.'],zh:['確認充電槍','快充通常為 <b>DC Combo（CCS1）</b>，慢充為 <b>AC 5-pin</b>。請確認與車輛充電口相符。特斯拉請使用原廠轉接頭。']},
+{i:'💳',en:['Authenticate or pay','On the screen, choose the connector type, then <span class="kr">회원카드</span> Member card or <span class="kr">신용카드/비회원</span> Credit card / Non-member. Follow the on-screen order — some chargers ask you to plug in first.'],ko:['인증 또는 결제','화면에서 커넥터 종류를 고른 뒤 <span class="kr">회원카드</span> 또는 <span class="kr">신용카드/비회원</span>을 선택하세요. 화면 안내 순서를 따르세요. 일부 충전기는 커넥터를 먼저 꽂아야 합니다.'],zh:['認證或付款','在螢幕上選擇充電類型，再選 <span class="kr">회원카드</span> 會員卡 或 <span class="kr">신용카드/비회원</span> 信用卡／非會員。請依螢幕指示順序操作，部分充電樁需先插槍。']},
+{i:'✅',en:['Confirm charging started','Plugging in is not enough — check the charging indicator on both the car and the charger (<span class="kr">충전 중</span>).'],ko:['충전 시작 확인','꽂기만 해서는 충전되지 않습니다. 차량과 충전기 모두에 <span class="kr">충전 중</span> 표시가 뜨는지 확인하세요.'],zh:['確認已開始充電','插上充電槍不代表已在充電，請確認車輛與充電樁都顯示「充電中（<span class="kr">충전 중</span>）」。']},
+{i:'🏁',en:['Stop, unplug & move','Press <span class="kr">충전 종료</span> Stop, wait for the connector to unlock, return the cable, and <b>move your car</b>. Fast-charging bays: max 1 hour, or a KRW 100,000 fine may apply.'],ko:['종료, 분리, 이동','<span class="kr">충전 종료</span>를 누르고 커넥터 잠금이 풀리면 케이블을 제자리에 걸고 <b>차를 이동</b>하세요. 급속 충전구역은 최대 1시간이며, 초과 시 과태료 10만원이 부과될 수 있습니다.'],zh:['結束、拔槍、移車','按下 <span class="kr">충전 종료</span> 結束，待充電槍解鎖後放回原位，並<b>立即移車</b>。快充車位停放超過 1 小時可能被罰款 10 萬韓元。']}];
+function svg(n){const ic=S[n].i;return `<svg width="220" height="130" viewBox="0 0 220 130"><rect x="10" y="20" width="60" height="100" rx="10" fill="#0a7cff"/><rect x="20" y="32" width="40" height="28" rx="4" fill="#fff"/><path d="M70 80 C100 80 100 100 130 100" stroke="#344054" stroke-width="5" fill="none"/><rect x="120" y="70" width="90" height="40" rx="14" fill="#12b76a"/><circle cx="140" cy="112" r="9" fill="#344054"/><circle cx="190" cy="112" r="9" fill="#344054"/><text x="165" y="58" font-size="40" text-anchor="middle">${ic}</text><text x="40" y="53" font-size="16" text-anchor="middle" fill="#0a7cff" font-weight="700">${n+1}/5</text></svg>`}
+let cur=0,L='en';
+function render(){document.querySelectorAll('#bar span').forEach((e,i)=>e.classList.toggle('on',i<=cur));
+const s=S[cur][L];document.getElementById('stepBox').innerHTML=`<div class="ill">${svg(cur)}</div><div class="card"><div class="muted">${{en:'Step',zh:'步驟',ko:'단계'}[L]} ${cur+1}/5</div><h3 style="font-size:20px">${s[0]}</h3>${s[1]}</div>`;
+document.getElementById('nextB').innerHTML=cur==4?{en:'Done ✓',zh:'完成 ✓',ko:'완료 ✓'}[L]:{en:'Next ›',zh:'下一步 ›',ko:'다음 ›'}[L]}
+function step(d){if(cur==4&&d>0){go('home');cur=0;render();return}cur=Math.max(0,Math.min(4,cur+d));render()}
+let scr='home';
+function go(id){scr=id;document.querySelectorAll('.screen').forEach(e=>e.classList.toggle('on',e.id==id));
+document.getElementById('back').style.visibility=id=='home'?'hidden':'visible';title();document.getElementById('phone').scrollTop=0;window.scrollTo(0,0);history.replaceState(null,'','#'+id);document.getElementById('phone').scrollTop=0;window.scrollTo(0,0)}
+function title(){document.getElementById('ttl').textContent=document.getElementById(scr).dataset[L]}
+function setL(l){L=l;document.body.classList.toggle('zh',l=='zh');document.body.classList.toggle('ko',l=='ko');document.documentElement.lang={en:'en',zh:'zh-Hant',ko:'ko'}[l];
+bEN.classList.toggle('on',l=='en');bZH.classList.toggle('on',l=='zh');bKO.classList.toggle('on',l=='ko');title();render();try{localStorage.lang=l}catch(e){}}
+const q=new URLSearchParams(location.search);render();
+setL(q.get('lang')||(()=>{try{return localStorage.lang}catch(e){}})()||(/^zh/.test(navigator.language)?'zh':/^ko/.test(navigator.language)?'ko':'en'));
+go(location.hash.slice(1)&&document.getElementById(location.hash.slice(1))?location.hash.slice(1):'home');
+</script></body></html>
