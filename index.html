@@ -34,7 +34,7 @@ table{width:100%;border-collapse:collapse;font-size:13.5px}td{padding:6px 4px;bo
 .pr{font-size:12.5px;font-weight:500;color:#475467;margin-top:3px;line-height:1.45}.big .pr{font-size:15px}.spk{border:0;background:#eef4ff;border-radius:50%;width:30px;height:30px;font-size:15px;cursor:pointer;margin-left:6px;vertical-align:middle}body.ko .spk{display:none}
 </style></head>
 <body><div id="phone">
-<header><button class="back" id="back" onclick="go('home')" style="visibility:hidden">‹</button>
+<header><button class="back" id="back" onclick="goBack()" style="visibility:hidden">‹</button>
 <h1 id="ttl"></h1>
 <div class="lang"><button id="bEN" class="on" onclick="setL('en')">EN</button><button id="bZH" onclick="setL('zh')">繁中</button><button id="bKO" onclick="setL('ko')">한국어</button></div>
 <button class="sos" onclick="go('sos')">SOS</button></header>
@@ -162,14 +162,34 @@ let cur=0,L='en';
 function render(){document.querySelectorAll('#bar span').forEach((e,i)=>e.classList.toggle('on',i<=cur));
 const s=S[cur][L];document.getElementById('stepBox').innerHTML=`<div class="ill">${svg(cur)}</div><div class="card"><div class="muted">${{en:'Step',zh:'步驟',ko:'단계'}[L]} ${cur+1}/5</div><h3 style="font-size:20px">${s[0]}</h3>${s[1]}</div>`;
 document.getElementById('nextB').innerHTML=cur==4?{en:'Done ✓',zh:'完成 ✓',ko:'완료 ✓'}[L]:{en:'Next ›',zh:'下一步 ›',ko:'다음 ›'}[L]}
-function step(d){if(cur==4&&d>0){go('home');cur=0;render();return}cur=Math.max(0,Math.min(4,cur+d));render()}
+const H2ID={home:'home',guide:'guide',payment:'pay',pay:'pay',connectors:'conn',conn:'conn',find:'find',rules:'rules',faq:'faq',emergency:'sos',sos:'sos'};
+const ID2H={home:'home',guide:'guide',pay:'payment',conn:'connectors',find:'find',rules:'rules',faq:'faq',sos:'emergency'};
 let scr='home';
-function go(id){scr=id;document.querySelectorAll('.screen').forEach(e=>e.classList.toggle('on',e.id==id));
-document.getElementById('back').style.visibility=id=='home'?'hidden':'visible';title();document.getElementById('phone').scrollTop=0;window.scrollTo(0,0);history.replaceState(null,'','#'+id);document.getElementById('phone').scrollTop=0;window.scrollTo(0,0)}
+function key(id,st){return id=='guide'?'guide/'+(st+1):ID2H[id]}
+function url(k){return location.pathname+location.search+'#'+k}
+function parse(hash){const m=(hash||'').replace(/^#/,'').split('/');const id=H2ID[m[0]];if(!id)return null;
+let st=id=='guide'?Math.max(0,Math.min(4,(parseInt(m[1])||1)-1)):0;return{s:id,st}}
+function show(id,st){scr=id;if(id=='guide'){cur=st||0;render()}
+document.querySelectorAll('.screen').forEach(e=>e.classList.toggle('on',e.id==id));
+document.getElementById('back').style.visibility=id=='home'?'hidden':'visible';title();
+document.getElementById('phone').scrollTop=0;window.scrollTo(0,0)}
+function nav(id,st){st=st||0;const s=history.state||{i:0};const k=key(id,st);
+if(k==key(scr,cur)&&id!='guide'){return}
+if(id=='home'){if(s.i>0){history.go(-s.i);return}history.replaceState({s:'home',st:0,i:0},'',url('home'));show('home');return}
+if(s.p==k){history.back();return}
+history.pushState({s:id,st,i:(s.i||0)+1,p:key(scr,cur)},'',url(k));show(id,st)}
+function go(id){nav(id,0)}
+function goBack(){const s=history.state;if(s&&s.i>0)history.back();else nav('home')}
+function step(d){if(d>0&&cur==4){nav('home');return}if(d<0&&cur==0){goBack();return}nav('guide',cur+d)}
+window.addEventListener('popstate',e=>{const s=e.state||parse(location.hash)||{s:'home',st:0};show(s.s,s.st)});
 function title(){document.getElementById('ttl').textContent=document.getElementById(scr).dataset[L]}
 function setL(l){L=l;document.body.classList.toggle('zh',l=='zh');document.body.classList.toggle('ko',l=='ko');document.documentElement.lang={en:'en',zh:'zh-Hant',ko:'ko'}[l];
-bEN.classList.toggle('on',l=='en');bZH.classList.toggle('on',l=='zh');bKO.classList.toggle('on',l=='ko');title();render();try{localStorage.lang=l}catch(e){}}
+bEN.classList.toggle('on',l=='en');bZH.classList.toggle('on',l=='zh');bKO.classList.toggle('on',l=='ko');title();render();try{localStorage.lang=l}catch(e){}
+const q=new URLSearchParams(location.search);if(q.get('lang')&&q.get('lang')!=l){q.set('lang',l);history.replaceState(history.state,'',location.pathname+'?'+q+location.hash)}}
 const q=new URLSearchParams(location.search);render();
 setL(q.get('lang')||(()=>{try{return localStorage.lang}catch(e){}})()||(/^zh/.test(navigator.language)?'zh':/^ko/.test(navigator.language)?'ko':'en'));
-go(location.hash.slice(1)&&document.getElementById(location.hash.slice(1))?location.hash.slice(1):'home');
+(function(){const t=parse(location.hash);const hs=history.state;
+if(hs&&hs.s){show(hs.s,hs.st);return}
+history.replaceState({s:'home',st:0,i:0},'',url('home'));show('home');
+if(t&&t.s!='home'){history.pushState({s:t.s,st:t.st,i:1,p:'home'},'',url(key(t.s,t.st)));show(t.s,t.st)}})();
 </script></body></html>
