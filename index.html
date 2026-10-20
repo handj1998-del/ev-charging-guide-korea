@@ -31,6 +31,7 @@ a.call,a.link{display:flex;align-items:center;gap:12px;background:#fff;border-ra
 a.call .n{font-size:20px;font-weight:800;color:var(--g);min-width:110px}a.call.red .n{color:var(--r)}
 table{width:100%;border-collapse:collapse;font-size:13.5px}td{padding:6px 4px;border-bottom:1px solid #eaecf0}
 .big{font-size:22px;font-weight:800;text-align:center;padding:18px;background:#fffbe6;border:2px dashed var(--w);border-radius:16px;margin-bottom:10px}
+.pr{font-size:12.5px;font-weight:500;color:#475467;margin-top:3px;line-height:1.45}.big .pr{font-size:15px}.spk{border:0;background:#eef4ff;border-radius:50%;width:30px;height:30px;font-size:15px;cursor:pointer;margin-left:6px;vertical-align:middle}body.ko .spk{display:none}
 </style></head>
 <body><div id="phone">
 <header><button class="back" id="back" onclick="go('home')" style="visibility:hidden">‹</button>
@@ -61,12 +62,12 @@ table{width:100%;border-collapse:collapse;font-size:13.5px}td{padding:6px 4px;bo
 <div id="stepBox"></div>
 <div class="nav"><button class="btn sec" onclick="step(-1)"><span class="en">‹ Back</span><span class="zh">‹ 上一步</span><span class="ko">‹ 이전</span></button><button class="btn" id="nextB" onclick="step(1)"></button></div>
 <div class="card" style="margin-top:14px"><h3><span class="en">Korean screen words</span><span class="zh">韓文畫面用語</span><span class="ko">충전기 화면 주요 문구</span></h3>
-<table><tr><td class="kr">충전 시작</td><td><span class="en">Start</span><span class="zh">開始充電</span><span class="ko">충전 시작</span></td></tr>
-<tr><td class="kr">비회원</td><td><span class="en">Non-member</span><span class="zh">非會員</span><span class="ko">비회원</span></td></tr>
-<tr><td class="kr">신용카드</td><td><span class="en">Credit card</span><span class="zh">信用卡</span><span class="ko">신용카드</span></td></tr>
-<tr><td class="kr">회원카드</td><td><span class="en">Member card</span><span class="zh">會員卡</span><span class="ko">회원카드</span></td></tr>
-<tr><td class="kr">충전 중</td><td><span class="en">Charging</span><span class="zh">充電中</span><span class="ko">충전 중</span></td></tr>
-<tr><td class="kr">충전 종료</td><td><span class="en">Stop</span><span class="zh">結束充電</span><span class="ko">충전 종료</span></td></tr></table></div>
+<table><tr><td><span class="kr">충전 시작</span><button class="spk" onclick="say('충전 시작')" aria-label="Play">🔊</button><div class="pr"><span class="en">chung-jeon si-jak</span><span class="zh">衝怎 西架<br>ㄘㄨㄥ ㄐㄩㄣ ㄒㄧ ㄐㄚ</span></div></td><td><span class="en">Start</span><span class="zh">開始充電</span><span class="ko">충전 시작</span></td></tr>
+<tr><td><span class="kr">비회원</span><button class="spk" onclick="say('비회원')" aria-label="Play">🔊</button><div class="pr"><span class="en">bi-hoe-won</span><span class="zh">比灰汪<br>ㄅㄧ ㄏㄨㄟ ㄨㄛㄣ</span></div></td><td><span class="en">Non-member</span><span class="zh">非會員</span><span class="ko">비회원</span></td></tr>
+<tr><td><span class="kr">신용카드</span><button class="spk" onclick="say('신용카드')" aria-label="Play">🔊</button><div class="pr"><span class="en">sin-yong-ka-deu</span><span class="zh">新庸 卡的<br>ㄒㄧㄣ ㄩㄥ ㄎㄚ ㄉㄜ</span></div></td><td><span class="en">Credit card</span><span class="zh">信用卡</span><span class="ko">신용카드</span></td></tr>
+<tr><td><span class="kr">회원카드</span><button class="spk" onclick="say('회원카드')" aria-label="Play">🔊</button><div class="pr"><span class="en">hoe-won-ka-deu</span><span class="zh">灰汪 卡的<br>ㄏㄨㄟ ㄨㄛㄣ ㄎㄚ ㄉㄜ</span></div></td><td><span class="en">Member card</span><span class="zh">會員卡</span><span class="ko">회원카드</span></td></tr>
+<tr><td><span class="kr">충전 중</span><button class="spk" onclick="say('충전 중')" aria-label="Play">🔊</button><div class="pr"><span class="en">chung-jeon jung</span><span class="zh">衝怎 中<br>ㄘㄨㄥ ㄐㄩㄣ ㄐㄨㄥ</span></div></td><td><span class="en">Charging</span><span class="zh">充電中</span><span class="ko">충전 중</span></td></tr>
+<tr><td><span class="kr">충전 종료</span><button class="spk" onclick="say('충전 종료')" aria-label="Play">🔊</button><div class="pr"><span class="en">chung-jeon jong-nyo</span><span class="zh">衝怎 中扭<br>ㄘㄨㄥ ㄐㄩㄣ ㄐㄨㄥ ㄋㄧㄡ</span></div></td><td><span class="en">Stop</span><span class="zh">結束充電</span><span class="ko">충전 종료</span></td></tr></table></div>
 </section>
 
 <!-- PAY -->
@@ -143,11 +144,13 @@ table{width:100%;border-collapse:collapse;font-size:13.5px}td{padding:6px 4px;bo
 <a class="call" href="tel:16610970"><span class="n">1661-0970</span><span><span class="en">ev.or.kr call center</span><span class="zh">ev.or.kr 客服中心</span><span class="ko">무공해차 통합누리집 콜센터</span></span></a>
 <div class="card">📸 <span class="en">Other chargers: call the operator number printed on the charger. Take a photo of the charger ID and phone number.</span><span class="zh">其他充電樁：請撥打充電樁上標示的業者電話，並拍下充電樁編號與電話。</span><span class="ko">기타 충전기: 충전기에 적힌 운영사 번호로 전화하세요. 충전기 번호와 전화번호를 사진으로 찍어 두세요.</span></div>
 <p class="muted"><span class="en">Show this to a local:</span><span class="zh">出示給當地人：</span><span class="ko">주변 분께 보여 주세요:</span></p>
-<div class="big">충전기 사용을 도와주세요</div>
-<div class="big">여기 해외 카드 되나요?</div>
+<div class="big">충전기 사용을 도와주세요 <button class="spk" onclick="say('충전기 사용을 도와주세요')" aria-label="Play">🔊</button><div class="pr"><span class="en">chung-jeon-gi sa-yong-eul do-wa-ju-se-yo<br><i>“Please help me use the charger.”</i></span><span class="zh">衝怎基 沙庸額 都哇朱誰喲<br>ㄘㄨㄥ ㄐㄩㄣ ㄍㄧ ㄙㄚ ㄩㄥ ㄜ ㄉㄡ ㄨㄚ ㄐㄩ ㄙㄝ ㄧㄛ<br><i>「請幫我使用充電樁。」</i></span></div></div>
+<div class="big">여기 해외 카드 되나요? <button class="spk" onclick="say('여기 해외 카드 되나요?')" aria-label="Play">🔊</button><div class="pr"><span class="en">yeo-gi hae-oe ka-deu doe-na-yo?<br><i>“Can I use a foreign card here?”</i></span><span class="zh">喲基 黑威 卡的 堆那喲？<br>ㄧㄛ ㄍㄧ ㄏㄝ ㄨㄝ ㄎㄚ ㄉㄜ ㄉㄨㄟ ㄋㄚ ㄧㄛ<br><i>「這裡可以用海外信用卡嗎？」</i></span></div></div>
 </section>
 </main></div>
 <script>
+function say(t){try{const u=new SpeechSynthesisUtterance(t);u.lang="ko-KR";u.rate=0.85;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){alert(t)}}
+
 const S=[
 {i:'🅿️',en:['Park & prepare','Park in the charging bay, shift to P, and open the charging port.'],ko:['주차 및 준비','충전 구역에 주차하고 기어를 P에 둔 뒤 충전구를 여세요.'],zh:['停車準備','將車停入充電車位，排至 P 檔，打開充電口。']},
 {i:'🔌',en:['Check the connector','Fast chargers usually use <b>DC Combo (CCS1)</b>; slow chargers use <b>AC 5-pin</b>. Match the plug to your car\'s port. Tesla: use the official adapter.'],ko:['커넥터 확인','급속 충전기는 보통 <b>DC콤보(CCS1)</b>, 완속 충전기는 <b>AC 5핀</b>을 씁니다. 차량 충전구와 맞는지 확인하세요. 테슬라는 정식 어댑터를 사용하세요.'],zh:['確認充電槍','快充通常為 <b>DC Combo（CCS1）</b>，慢充為 <b>AC 5-pin</b>。請確認與車輛充電口相符。特斯拉請使用原廠轉接頭。']},
