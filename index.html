@@ -8,57 +8,124 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="EV Korea">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;800&display=swap">
 <title>K-EV Charge Guide</title>
 <style>
-:root{--p:#0a7cff;--g:#12b76a;--w:#f79009;--r:#f04438;--bg:#f4f6fb;--t:#101828;--m:#667085}
-*{box-sizing:border-box}body{margin:0;font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic","Segoe UI",Roboto,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;color:var(--t);background:#dfe5ef}
+:root{--p:#1667ff;--p2:#0b4fd9;--pt:#eef3ff;--g:#0e9f6e;--gt:#e8f7f0;--w:#d97706;--wt:#fff6e6;--r:#e5383b;--rt:#fdeeee;
+--bg:#f5f7fb;--s:#fff;--t:#0f172a;--t2:#334155;--m:#64748b;--line:#e8edf4;
+--sh:0 1px 2px rgba(15,23,42,.04),0 4px 14px rgba(15,23,42,.06);--rad:16px;--pad:16px;
+--fs-xs:12px;--fs-sm:13.5px;--fs-md:15px;--fs-lg:17px;--fs-xl:20px;--fs-2xl:24px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic","Segoe UI",Roboto,sans-serif;
+color:var(--t);background:#e3e8f0;font-size:var(--fs-md);line-height:1.55;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;word-break:keep-all;overflow-wrap:anywhere}
+body.zh{font-family:"Pretendard Variable",Pretendard,"Noto Sans TC","PingFang TC","Microsoft JhengHei",-apple-system,sans-serif;letter-spacing:0}
+body.ko{letter-spacing:-.02em}
 body.zh .en,body.ko .en,body:not(.zh) .zh,body:not(.ko) .ko{display:none!important}
 #phone{max-width:430px;margin:0 auto;min-height:100vh;background:var(--bg);position:relative;overflow-x:clip}
-@media(min-width:600px){body{padding:30px 0}#phone{width:390px;height:844px;min-height:0;border-radius:44px;border:12px solid #111;box-shadow:0 20px 60px #0004;overflow-y:auto}}
-header{position:sticky;top:0;z-index:5;padding-top:max(14px,env(safe-area-inset-top))!important;background:linear-gradient(135deg,#0a7cff,#0055d4);color:#fff;padding:14px 16px;display:flex;align-items:center;gap:10px}
-header h1{font-size:17px;margin:0;flex:1}.back{background:#fff3;border:0;color:#fff;font-size:18px;border-radius:10px;width:34px;height:34px;cursor:pointer}
-.lang{display:flex;background:#fff3;border-radius:20px;padding:3px}.lang button{border:0;background:none;color:#fff;font-weight:700;padding:5px 8px;border-radius:16px;cursor:pointer;font-size:12px}
-.lang button.on{background:#fff;color:var(--p)}
-.sos{background:var(--r);color:#fff;border:0;border-radius:10px;padding:7px 10px;font-weight:800;cursor:pointer}
-main{padding:16px}.screen{display:none}.screen.on{display:block}
-.hero{background:#fff;border-radius:18px;padding:16px;margin-bottom:14px;box-shadow:0 2px 8px #0000000d}.hero b{font-size:19px}.hero p{margin:6px 0 0;color:var(--m);font-size:14px}
+@media(min-width:600px){body{padding:30px 0}#phone{width:390px;height:844px;min-height:0;border-radius:44px;border:10px solid #0b0f19;box-shadow:0 30px 70px rgba(15,23,42,.28);overflow-y:auto;scrollbar-width:none}}
+button{font:inherit;letter-spacing:inherit}
+button,a{transition:transform .12s ease,box-shadow .12s ease,background-color .12s ease,filter .12s}
+button:active,a:active{transform:scale(.97)}
+:focus-visible{outline:3px solid #99b9ff;outline-offset:2px}
+/* header */
+header{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px;min-height:64px;padding:10px var(--pad);padding-top:max(10px,env(safe-area-inset-top));
+background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;box-shadow:0 2px 12px rgba(11,79,217,.18)}
+header h1{flex:1;min-width:0;margin:0;font-size:var(--fs-lg);font-weight:700;line-height:1.25;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.back{flex:none;display:grid;place-items:center;width:44px;height:44px;border:0;border-radius:14px;background:rgba(255,255,255,.16);color:#fff;font-size:24px;line-height:1;cursor:pointer}
+.sos{flex:none;height:44px;padding:0 16px;border:0;border-radius:14px;background:var(--r);color:#fff;font-weight:800;font-size:14px;letter-spacing:.03em;cursor:pointer;box-shadow:0 2px 8px rgba(229,56,59,.35)}
+.langbar{padding:12px var(--pad) 0}
+.lang{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:4px;border-radius:14px;background:#e6ebf3}
+.lang button{height:44px;border:0;border-radius:10px;background:none;color:var(--m);font-weight:600;font-size:var(--fs-sm);cursor:pointer}
+.lang button.on{background:#fff;color:var(--p);font-weight:700;box-shadow:0 1px 3px rgba(15,23,42,.12)}
+main{padding:14px var(--pad) 32px}.screen{display:none}.screen.on{display:block;animation:fade .18s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+/* home */
+.hero{padding:6px 2px 18px}.hero b{display:block;font-size:var(--fs-2xl);font-weight:800;line-height:1.3;letter-spacing:-.03em}
+.hero p{margin:6px 0 0;color:var(--m);font-size:var(--fs-md)}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.tile{background:#fff;border:0;border-radius:18px;padding:18px 12px;text-align:left;cursor:pointer;box-shadow:0 2px 8px #0000000f;font-size:15px;font-weight:700;color:var(--t);min-height:108px}
-.tile .i{font-size:32px;display:block;margin-bottom:8px}.tile.wide{grid-column:span 2;background:var(--p);color:#fff;min-height:auto;display:flex;align-items:center;gap:12px}
-.tile.wide .i{margin:0}.tile.sosT{background:#fff0ef;color:var(--r)}
-.card{background:#fff;border-radius:16px;padding:14px 16px;margin-bottom:12px;box-shadow:0 2px 8px #0000000d;font-size:14.5px;line-height:1.5}
-.card h3{margin:0 0 6px;font-size:16px}.muted{color:var(--m);font-size:12.5px}
-.badge{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:10px;margin-left:4px;vertical-align:middle}
-.ok{background:#e7f8ef;color:#067647}.warn{background:#fff4e5;color:#b54708}
-.kr{background:#eef4ff;color:#0040a8;padding:1px 6px;border-radius:6px;font-weight:700}
-.steps{display:flex;gap:6px;margin-bottom:12px}.steps span{flex:1;height:6px;border-radius:3px;background:#d0d5dd}.steps span.on{background:var(--p)}
-.ill{background:linear-gradient(180deg,#eaf3ff,#fff);border-radius:16px;display:flex;justify-content:center;padding:12px;margin-bottom:12px}
-.nav{display:flex;gap:10px;margin-top:6px}.btn{flex:1;border:0;border-radius:14px;padding:14px;font-size:16px;font-weight:700;cursor:pointer;background:var(--p);color:#fff}.btn.sec{background:#e4e7ec;color:var(--t)}
-details{background:#fff;border-radius:14px;margin-bottom:10px;padding:12px 14px;box-shadow:0 2px 8px #0000000d;font-size:14.5px}summary{font-weight:700;cursor:pointer}
-a.call,a.link{display:flex;align-items:center;gap:12px;background:#fff;border-radius:16px;padding:14px;margin-bottom:10px;text-decoration:none;color:var(--t);box-shadow:0 2px 8px #0000000d}
-a.call .n{font-size:18px;font-weight:800;color:var(--g);min-width:136px}a.call.red .n{color:var(--r)}
-table{width:100%;border-collapse:collapse;font-size:13.5px}td{padding:6px 4px;border-bottom:1px solid #eaecf0}
-.big{font-size:22px;font-weight:800;text-align:center;padding:18px;background:#fffbe6;border:2px dashed var(--w);border-radius:16px;margin-bottom:10px}
-.pr{font-size:12.5px;font-weight:500;color:#475467;margin-top:3px;line-height:1.45}.big .pr{font-size:15px}.spk{border:0;background:#eef4ff;border-radius:50%;width:30px;height:30px;font-size:15px;cursor:pointer;margin-left:6px;vertical-align:middle}body.ko .spk{display:none}
-.inst{display:none;margin-top:14px}.inst.on{display:block}.inst button{width:100%;border:0;border-radius:16px;padding:14px;font-size:16px;font-weight:700;background:#101828;color:#fff;cursor:pointer}
-.ios{background:#fff;border-radius:16px;padding:14px;font-size:14px;line-height:1.5;box-shadow:0 2px 8px #0000000d}
-.mapbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}.mapbtns a,.nav2 a{display:block;text-align:center;background:#eef4ff;color:#0040a8;border-radius:12px;padding:10px 6px;font-size:13.5px;font-weight:700;text-decoration:none}
-.st{border-top:1px solid #eaecf0;padding:10px 0}.st b{font-size:15px}.st .d{float:right;color:var(--p);font-weight:800}.nav2{display:flex;gap:6px;margin-top:6px}.nav2 a{flex:1;padding:7px 4px;font-size:12.5px}
+.tile{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:14px;min-height:118px;padding:16px;border:0;border-radius:var(--rad);background:var(--s);box-shadow:var(--sh);
+text-align:left;font-size:var(--fs-md);font-weight:700;line-height:1.35;color:var(--t);cursor:pointer}
+.tile .i{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--pt);font-size:24px;line-height:1}
+.tile.wide{grid-column:span 2;flex-direction:row;align-items:center;justify-content:flex-start;min-height:72px;gap:14px;background:linear-gradient(135deg,var(--p),var(--p2));color:#fff;font-size:var(--fs-lg);box-shadow:0 6px 18px rgba(22,103,255,.28)}
+.tile.wide .i{background:rgba(255,255,255,.18)}
+.tile.wide::after{content:"›";margin-left:auto;font-size:26px;font-weight:400;opacity:.85}
+.tile.wide.near{background:var(--s);color:var(--t);box-shadow:var(--sh);font-size:var(--fs-md)}.tile.wide.near .i{background:var(--gt)}.tile.wide.near::after{color:#94a3b8}
+.tile.sosT{background:var(--rt);color:var(--r);box-shadow:none}.tile.sosT .i{background:#fff}
+/* cards */
+.card,details,.ios{background:var(--s);border-radius:var(--rad);padding:16px var(--pad);margin-bottom:12px;box-shadow:var(--sh);font-size:var(--fs-md);line-height:1.6;color:var(--t2)}
+.card h3{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:0 0 8px;font-size:var(--fs-lg);font-weight:700;line-height:1.35;letter-spacing:-.02em;color:var(--t)}
+.card b{color:var(--t)}
+.card.tint{background:var(--pt);box-shadow:none;color:#1e3a8a}.card.tint b{color:#1e3a8a}
+.card.alert{box-shadow:var(--sh),inset 4px 0 0 var(--r)}.card.caution{box-shadow:var(--sh),inset 4px 0 0 var(--w)}
+.muted{color:var(--m);font-size:var(--fs-sm);line-height:1.55}
+.foot{margin:18px 2px 0;text-align:left}
+.badge{display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:999px;font-size:11.5px;font-weight:700;letter-spacing:0;vertical-align:middle;white-space:nowrap}
+.ok{background:var(--gt);color:#047857}.warn{background:var(--wt);color:#b45309}
+.kr{display:inline-block;background:var(--pt);color:#1d4ed8;padding:0 7px;border-radius:7px;font-weight:700;line-height:1.6}
+/* guide */
+.steps{display:flex;gap:6px;margin:2px 0 14px}.steps span{flex:1;height:6px;border-radius:999px;background:#dbe3ee}.steps span.on{background:var(--p)}
+.ill{display:flex;justify-content:center;padding:14px;margin-bottom:12px;border-radius:var(--rad);background:linear-gradient(180deg,#eaf1ff,#f7f9ff)}
+.ill svg{max-width:100%;height:auto}
+.stepT{margin:2px 0 8px;font-size:var(--fs-xl)!important;font-weight:800;letter-spacing:-.03em}
+.nav{display:flex;gap:10px;margin-top:4px}
+.btn{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 18px;border:0;border-radius:14px;background:var(--p);color:#fff;font-size:var(--fs-md);font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(22,103,255,.25)}
+.btn:active{filter:brightness(.92)}
+.btn.sec{background:#e9eef6;color:var(--t);box-shadow:none}
+.btn.full{width:100%}
+table{width:100%;border-collapse:collapse;font-size:var(--fs-sm)}td{padding:10px 4px;border-bottom:1px solid var(--line);vertical-align:top}tr:last-child td{border-bottom:0}
+td:first-child{width:56%}
+/* faq */
+details{padding:0;overflow:hidden}
+summary{display:flex;align-items:center;gap:10px;min-height:56px;padding:14px var(--pad);font-weight:700;color:var(--t);cursor:pointer;list-style:none;line-height:1.4}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";flex:none;margin-left:auto;width:8px;height:8px;border-right:2px solid var(--m);border-bottom:2px solid var(--m);transform:rotate(45deg);transition:transform .15s}
+details[open] summary::after{transform:rotate(-135deg)}
+details p{margin:0;padding:0 var(--pad) 16px}
+/* list rows */
+a.call,a.link{display:flex;align-items:center;gap:14px;min-height:64px;padding:14px var(--pad);margin-bottom:10px;border-radius:var(--rad);background:var(--s);box-shadow:var(--sh);text-decoration:none;color:var(--t);line-height:1.45}
+a.link b{font-size:var(--fs-md)}
+a.link::after,a.call::after{content:"›";flex:none;margin-left:auto;padding-left:6px;color:#94a3b8;font-size:22px}
+.ico{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--pt);font-size:22px}
+a.call{gap:12px;font-size:var(--fs-sm);color:var(--t2)}
+a.call .n{flex:none;min-width:128px;font-size:var(--fs-lg);font-weight:800;letter-spacing:-.01em;color:var(--g);font-variant-numeric:tabular-nums}
+a.call.red .n{color:var(--r)}
+/* show-to-local */
+.big{padding:18px var(--pad);margin-bottom:12px;border-radius:var(--rad);background:#fffaf0;border:1.5px dashed #f5b453;font-size:22px;font-weight:800;line-height:1.4;letter-spacing:-.02em;text-align:left;color:var(--t)}
+.pr{margin-top:6px;font-size:var(--fs-sm);font-weight:500;line-height:1.55;color:var(--m);letter-spacing:0}.big .pr{font-size:var(--fs-md)}
+.spk{display:inline-grid;place-items:center;width:44px;height:44px;margin-left:6px;border:0;border-radius:999px;background:var(--pt);font-size:17px;vertical-align:middle;cursor:pointer}
+td .spk{width:36px;height:36px;font-size:15px}
+body.ko .spk{display:none}
+/* install */
+.inst{display:none;margin-top:14px}.inst.on{display:block}
+.inst button{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:52px;border:0;border-radius:14px;background:var(--t);color:#fff;font-size:var(--fs-md);font-weight:700;cursor:pointer}
+.ios{font-size:var(--fs-sm)}
+/* near me */
+.mapbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.mapbtns a,.nav2 a{display:flex;align-items:center;justify-content:center;min-height:48px;padding:0 8px;border-radius:12px;background:var(--pt);color:#1d4ed8;font-size:var(--fs-sm);font-weight:700;text-decoration:none;text-align:center;line-height:1.25}
+.st{padding:14px 0;border-top:1px solid var(--line)}.st b{font-size:var(--fs-md)}.st .d{float:right;margin-left:8px;color:var(--p);font-weight:800;font-variant-numeric:tabular-nums}
+.nav2{display:flex;gap:6px;margin-top:8px}.nav2 a{flex:1;min-height:44px;font-size:12.5px}
+.geoTxt{margin:0 0 12px}
+@media(max-width:370px){:root{--pad:14px}.hero b{font-size:22px}.sos{padding:0 12px}a.call .n{min-width:118px;font-size:16px}.big{font-size:20px}}
 </style></head>
 <body><div id="phone">
-<header><button class="back" id="back" onclick="goBack()" style="visibility:hidden">‹</button>
+<header><button class="back" id="back" onclick="goBack()" style="display:none">‹</button>
 <h1 id="ttl"></h1>
-<div class="lang"><button id="bEN" class="on" onclick="setL('en')">EN</button><button id="bZH" onclick="setL('zh')">繁中</button><button id="bKO" onclick="setL('ko')">한국어</button></div>
+
 <button class="sos" onclick="go('sos')">SOS</button></header>
+<div class="langbar"><div class="lang"><button id="bEN" class="on" onclick="setL('en')">EN</button><button id="bZH" onclick="setL('zh')">繁中</button><button id="bKO" onclick="setL('ko')">한국어</button></div></div>
 <main>
 
 <!-- HOME -->
-<section class="screen on" id="home" data-en="K-EV Charge Guide" data-zh="韓國電動車充電指南" data-ko="외국인 전기차 충전 가이드">
+<section class="screen on" id="home" data-en="K-EV Guide" data-zh="韓國電動車充電指南" data-ko="외국인 전기차 충전 가이드">
 <div class="hero"><b class="en">Charge your EV in Korea ⚡</b><b class="zh">在韓國為電動車充電 ⚡</b><b class="ko">한국에서 전기차 충전하기 ⚡</b>
 <p class="en">Know what to press and how to pay — in 3 minutes.</p><p class="zh">3 分鐘了解該按什麼、怎麼付款。</p><p class="ko">3분이면 무엇을 누르고 어떻게 결제할지 알 수 있어요.</p></div>
 <div class="grid">
 <button class="tile wide" onclick="go('guide')"><span class="i">🔌</span><span><span class="en">Start: 5-step charging guide</span><span class="zh">開始：5 步驟充電指南</span><span class="ko">시작: 5단계 충전 가이드</span></span></button>
-<button class="tile wide" style="background:#12b76a" onclick="go('find');locate()"><span class="i">📍</span><span><span class="en">Near me: chargers around you</span><span class="zh">附近充電站</span><span class="ko">내 주변 충전소</span></span></button>
+<button class="tile wide near" onclick="go('find');locate()"><span class="i">📍</span><span><span class="en">Near me: chargers around you</span><span class="zh">附近充電站</span><span class="ko">내 주변 충전소</span></span></button>
 <button class="tile" onclick="go('pay')"><span class="i">💳</span><span class="en">How to pay</span><span class="zh">付款方式</span><span class="ko">결제 방법</span></button>
 <button class="tile" onclick="go('conn')"><span class="i">🔍</span><span class="en">Which plug?</span><span class="zh">哪種充電槍？</span><span class="ko">어떤 커넥터?</span></button>
 <button class="tile" onclick="go('find')"><span class="i">📍</span><span class="en">Find chargers</span><span class="zh">尋找充電站</span><span class="ko">충전소 찾기</span></button>
@@ -69,7 +136,7 @@ table{width:100%;border-collapse:collapse;font-size:13.5px}td{padding:6px 4px;bo
 <div class="inst" id="instA"><button onclick="doInstall()">📲 <span class="en">Install app</span><span class="zh">安裝 App</span><span class="ko">앱 설치</span></button></div>
 <div class="inst" id="instI"><div class="ios">📲 <b><span class="en">Install on iPhone</span><span class="zh">安裝到 iPhone</span><span class="ko">iPhone에 설치</span></b><br>
 <span class="en">In Safari, tap Share <b>⬆︎</b> → <b>Add to Home Screen</b>.</span><span class="zh">在 Safari 點「分享」<b>⬆︎</b> → <b>加入主畫面</b>。</span><span class="ko">Safari에서 공유 <b>⬆︎</b> → <b>홈 화면에 추가</b>를 누르세요.</span></div></div>
-<p class="muted" style="text-align:center;margin-top:16px"><span class="en">Information last checked: 2026-10-20 · This app is a guide and does not process payments.</span><span class="zh">資訊最後確認：2026-10-20 · 本 App 僅提供指南，不代為付款。</span><span class="ko">정보 최종 확인일: 2026-10-20 · 이 앱은 안내용이며 결제를 대신 처리하지 않습니다.</span></p>
+<p class="muted foot"><span class="en">Information last checked: 2026-10-20 · This app is a guide and does not process payments.</span><span class="zh">資訊最後確認：2026-10-20 · 本 App 僅提供指南，不代為付款。</span><span class="ko">정보 최종 확인일: 2026-10-20 · 이 앱은 안내용이며 결제를 대신 처리하지 않습니다.</span></p>
 </section>
 
 <!-- GUIDE -->
@@ -91,7 +158,7 @@ table{width:100%;border-collapse:collapse;font-size:13.5px}td{padding:6px 4px;bo
 <div class="card"><span class="en">Korean chargers are run by many different operators, and payment options vary by charger. Check the screen for "Member card", "Credit card/Non-member", or a QR code.</span><span class="zh">韓國充電樁由多家業者經營，付款方式因充電樁而異。請在螢幕上尋找「會員卡」、「信用卡／非會員」或 QR 碼。</span><span class="ko">한국 충전기는 여러 운영사가 운영하며, 결제 방법은 충전기마다 다릅니다. 화면에서 '회원카드', '신용카드/비회원' 또는 QR 코드를 찾아보세요.</span></div>
 <div class="card"><h3>💳 <span class="en">Credit card at fast charger</span><span class="zh">在快充樁刷信用卡</span><span class="ko">급속 충전기에서 신용카드 결제</span></h3>
 <span class="en">Most fast chargers offer non-member card payment (some slow chargers too). Choose <span class="kr">신용카드/비회원</span>. A pre-authorized amount may be charged first and the unused part refunded later (timing varies by operator).</span><span class="zh">多數快充樁提供非會員信用卡付款（部分慢充亦可）。請選 <span class="kr">신용카드/비회원</span>。可能先預授權一筆金額，充電後再退回未使用部分（退款時間依業者而異）。</span><span class="ko">대부분의 급속 충전기(일부 완속 포함)는 비회원 신용카드 결제를 지원합니다. <span class="kr">신용카드/비회원</span>을 선택하세요. 먼저 일정 금액이 선결제(승인)되고, 사용하지 않은 금액은 나중에 환불될 수 있습니다(시기는 운영사마다 다름).</span></div>
-<div class="card" style="border-left:5px solid var(--w)"><h3>⚠️ <span class="en">Foreign cards</span><span class="zh">海外信用卡</span><span class="ko">해외 발급 카드</span><span class="badge warn"><span class="en">Varies</span><span class="zh">不一定</span><span class="ko">상황별 상이</span></span></h3>
+<div class="card caution"><h3>⚠️ <span class="en">Foreign cards</span><span class="zh">海外信用卡</span><span class="ko">해외 발급 카드</span><span class="badge warn"><span class="en">Varies</span><span class="zh">不一定</span><span class="ko">상황별 상이</span></span></h3>
 <span class="en">Acceptance of overseas-issued cards is <b>not guaranteed</b> and varies by operator and terminal. Have a backup (e.g., a Korean-issued card) and call the number on the charger if payment fails.</span><span class="zh">海外發行的卡片<b>不保證可用</b>，依業者與刷卡機而異。請準備替代方案（例如韓國發行卡片），付款失敗時請撥打充電樁上的客服電話。</span><span class="ko">해외에서 발급된 카드는 <b>사용이 보장되지 않으며</b>, 운영사와 단말기에 따라 다릅니다. 대안(예: 국내 발급 카드)을 준비하고, 결제가 안 되면 충전기에 적힌 번호로 전화하세요.</span></div>
 <div class="card"><h3>🪪 <span class="en">Membership cards</span><span class="zh">會員卡</span><span class="ko">회원카드</span><span class="badge warn"><span class="en">Limited</span><span class="zh">有限制</span><span class="ko">제한 있음</span></span></h3>
 <span class="en">Each operator has its own member card/app; many require a Korean phone number and Korean payment method. The Ministry (Climate, Energy & Environment) membership card works across networks via roaming, but is issued only to eligible EV owners — usually not available to short-term visitors or renters. Residents: ask +82-1661-9408.</span><span class="zh">各業者有自己的會員卡／App，多數需要韓國手機號碼與韓國付款方式。氣候能源環境部會員卡可跨業者漫遊使用，但僅發給符合資格的電動車車主，短期旅客或租車者通常無法申請。長期居留者可洽 +82-1661-9408。</span><span class="ko">운영사마다 자체 회원카드/앱이 있으며, 대부분 한국 휴대폰 번호와 국내 결제수단이 필요합니다. 기후에너지환경부 멤버십카드는 로밍으로 여러 운영사 충전기에서 쓸 수 있지만, 자격을 갖춘 전기차 소유자에게만 발급되어 단기 방문객이나 렌터카 이용자는 대개 발급받기 어렵습니다. 체류 외국인은 1661-9408로 문의하세요.</span></div>
@@ -103,7 +170,7 @@ table{width:100%;border-collapse:collapse;font-size:13.5px}td{padding:6px 4px;bo
 
 <!-- CONNECTOR -->
 <section class="screen" id="conn" data-en="Which Plug?" data-zh="哪種充電槍？" data-ko="어떤 커넥터?">
-<div class="card" style="background:#eaf3ff"><b class="en">Fast chargers usually use DC Combo. Compare with your car's charging port.</b><b class="zh">快充通常為 DC Combo。請與車輛充電口比對。</b><b class="ko">급속 충전기는 보통 DC콤보를 씁니다. 차량 충전구와 비교해 보세요.</b></div>
+<div class="card tint"><b class="en">Fast chargers usually use DC Combo. Compare with your car's charging port.</b><b class="zh">快充通常為 DC Combo。請與車輛充電口比對。</b><b class="ko">급속 충전기는 보통 DC콤보를 씁니다. 차량 충전구와 비교해 보세요.</b></div>
 <div class="card"><h3>⚡ DC Combo (CCS1, 7-pin) <span class="badge ok"><span class="en">Most common fast</span><span class="zh">最常見快充</span><span class="ko">가장 흔한 급속</span></span></h3>
 <svg width="70" height="80" viewBox="0 0 70 80"><circle cx="35" cy="28" r="24" fill="#eef4ff" stroke="#0a7cff" stroke-width="3"/><circle cx="25" cy="20" r="4"/><circle cx="45" cy="20" r="4"/><circle cx="35" cy="34" r="4"/><circle cx="22" cy="36" r="3"/><circle cx="48" cy="36" r="3"/><rect x="15" y="56" width="40" height="20" rx="8" fill="#eef4ff" stroke="#0a7cff" stroke-width="3"/><circle cx="27" cy="66" r="4"/><circle cx="43" cy="66" r="4"/></svg>
 <div class="en">Korea's standard fast-charging plug.</div><div class="zh">韓國標準快充接頭。</div><div class="ko">국내 표준 급속 충전 커넥터입니다.</div></div>
@@ -121,20 +188,20 @@ table{width:100%;border-collapse:collapse;font-size:13.5px}td{padding:6px 4px;bo
 <!-- FIND -->
 <section class="screen" id="find" data-en="Find Chargers" data-zh="尋找充電站" data-ko="충전소 찾기">
 <div class="card" id="geoCard"><h3>📍 <span class="en">Chargers near me</span><span class="zh">我附近的充電站</span><span class="ko">내 주변 충전소</span></h3>
-<p class="muted" style="margin:0 0 10px"><span class="en">Your browser will ask to share your location. It is used only on this phone to find nearby chargers and is not sent to us.</span><span class="zh">瀏覽器會詢問是否分享位置。位置僅在本機用來尋找附近充電站，不會傳送給我們。</span><span class="ko">브라우저가 위치 공유를 요청합니다. 위치는 이 휴대폰에서 주변 충전소를 찾는 데만 쓰이며 저희에게 전송되지 않습니다.</span></p>
-<button class="btn" style="width:100%" onclick="locate()">📍 <span class="en">Use my location</span><span class="zh">使用我的位置</span><span class="ko">내 위치 사용</span></button>
+<p class="muted geoTxt"><span class="en">Your browser will ask to share your location. It is used only on this phone to find nearby chargers and is not sent to us.</span><span class="zh">瀏覽器會詢問是否分享位置。位置僅在本機用來尋找附近充電站，不會傳送給我們。</span><span class="ko">브라우저가 위치 공유를 요청합니다. 위치는 이 휴대폰에서 주변 충전소를 찾는 데만 쓰이며 저희에게 전송되지 않습니다.</span></p>
+<button class="btn full" onclick="locate()">📍 <span class="en">Use my location</span><span class="zh">使用我的位置</span><span class="ko">내 위치 사용</span></button>
 <div id="geoMsg" class="muted" style="margin-top:10px"></div>
 <div id="geoMaps" style="display:none;margin-top:10px"><b><span class="en">Open a map around you</span><span class="zh">開啟附近地圖</span><span class="ko">내 주변 지도 열기</span></b><div class="mapbtns" id="mapBtns"></div></div>
 <div id="geoList" style="display:none;margin-top:12px"></div></div>
-<a class="link" href="https://www.plugshare.com/" target="_blank" rel="noopener"><span style="font-size:28px">🔌</span><div><b>PlugShare</b><div class="muted"><span class="en">Global app, shows Korean stations · English</span><span class="zh">全球 App，可查韓國充電站 · 英文</span><span class="ko">글로벌 앱, 한국 충전소 표시 · 영어</span></div></div></a>
-<a class="link" href="https://plugs.co.kr/en/" target="_blank" rel="noopener"><span style="font-size:28px">⚡</span><div><b>PLUGS KOREA</b><div class="muted"><span class="en">Korean service with an English site · nationwide stations, live availability, prices</span><span class="zh">韓國服務，提供英文網站 · 全國充電站、即時空位、價格</span><span class="ko">국내 서비스(영문 사이트 제공) · 전국 충전소, 실시간 이용 가능 여부, 요금</span></div></div></a>
-<a class="link" href="https://openchargemap.org/poi?CountryIDs=121&amp;CountryName=korea%2Crepublicof" target="_blank" rel="noopener"><span style="font-size:28px">🌍</span><div><b>Open Charge Map</b><div class="muted"><span class="en">Free open map in English · includes Tesla Superchargers · live status may be less accurate</span><span class="zh">免費開放地圖（英文）· 含特斯拉超級充電站 · 即時狀態可能較不準確</span><span class="ko">무료 오픈 지도(영어) · 테슬라 슈퍼차저 포함 · 실시간 상태는 정확도가 낮을 수 있음</span></div></div></a>
+<a class="link" href="https://www.plugshare.com/" target="_blank" rel="noopener"><span class="ico">🔌</span><div><b>PlugShare</b><div class="muted"><span class="en">Global app, shows Korean stations · English</span><span class="zh">全球 App，可查韓國充電站 · 英文</span><span class="ko">글로벌 앱, 한국 충전소 표시 · 영어</span></div></div></a>
+<a class="link" href="https://plugs.co.kr/en/" target="_blank" rel="noopener"><span class="ico">⚡</span><div><b>PLUGS KOREA</b><div class="muted"><span class="en">Korean service with an English site · nationwide stations, live availability, prices</span><span class="zh">韓國服務，提供英文網站 · 全國充電站、即時空位、價格</span><span class="ko">국내 서비스(영문 사이트 제공) · 전국 충전소, 실시간 이용 가능 여부, 요금</span></div></div></a>
+<a class="link" href="https://openchargemap.org/poi?CountryIDs=121&amp;CountryName=korea%2Crepublicof" target="_blank" rel="noopener"><span class="ico">🌍</span><div><b>Open Charge Map</b><div class="muted"><span class="en">Free open map in English · includes Tesla Superchargers · live status may be less accurate</span><span class="zh">免費開放地圖（英文）· 含特斯拉超級充電站 · 即時狀態可能較不準確</span><span class="ko">무료 오픈 지도(영어) · 테슬라 슈퍼차저 포함 · 실시간 상태는 정확도가 낮을 수 있음</span></div></div></a>
 <p class="muted"><span class="en">Station info in third-party apps may be incomplete. Always check the charger screen.</span><span class="zh">第三方 App 資訊可能不完整，請以充電樁螢幕為準。</span><span class="ko">외부 앱 정보는 불완전할 수 있습니다. 항상 충전기 화면을 확인하세요.</span></p>
 </section>
 
 <!-- RULES -->
 <section class="screen" id="rules" data-en="Rules & Fees" data-zh="規定與費用" data-ko="규칙과 요금">
-<div class="card" style="border-left:5px solid var(--r)"><h3>⏱️ <span class="en">Time limits</span><span class="zh">停車時間限制</span><span class="ko">시간 제한</span></h3>
+<div class="card alert"><h3>⏱️ <span class="en">Time limits</span><span class="zh">停車時間限制</span><span class="ko">시간 제한</span></h3>
 <span class="en">Fast-charging bay: max <b>1 hour</b> <span class="badge warn">may change</span><br>Slow-charging bay: max <b>14 hours</b> (PHEV 7 hours)<br>Over the limit: <b>KRW 100,000</b> fine.</span>
 <span class="zh">快充車位：最多 <b>1 小時</b> <span class="badge warn">可能變動</span><br>慢充車位：最多 <b>14 小時</b>（插電混合動力 7 小時）<br>超時：罰款 <b>10 萬韓元</b>。</span><span class="ko">급속 충전구역: 최대 <b>1시간</b> <span class="badge warn">변경될 수 있음</span><br>완속 충전구역: 최대 <b>14시간</b>(PHEV 7시간)<br>초과 시: 과태료 <b>10만원</b>.</span></div>
 <div class="card"><h3>🚫 <span class="en">Not allowed</span><span class="zh">禁止事項</span><span class="ko">금지 사항</span></h3>
@@ -182,7 +249,7 @@ const S=[
 function svg(n){const ic=S[n].i;return `<svg width="220" height="130" viewBox="0 0 220 130"><rect x="10" y="20" width="60" height="100" rx="10" fill="#0a7cff"/><rect x="20" y="32" width="40" height="28" rx="4" fill="#fff"/><path d="M70 80 C100 80 100 100 130 100" stroke="#344054" stroke-width="5" fill="none"/><rect x="120" y="70" width="90" height="40" rx="14" fill="#12b76a"/><circle cx="140" cy="112" r="9" fill="#344054"/><circle cx="190" cy="112" r="9" fill="#344054"/><text x="165" y="58" font-size="40" text-anchor="middle">${ic}</text><text x="40" y="53" font-size="16" text-anchor="middle" fill="#0a7cff" font-weight="700">${n+1}/5</text></svg>`}
 let cur=0,L='en';
 function render(){document.querySelectorAll('#bar span').forEach((e,i)=>e.classList.toggle('on',i<=cur));
-const s=S[cur][L];document.getElementById('stepBox').innerHTML=`<div class="ill">${svg(cur)}</div><div class="card"><div class="muted">${{en:'Step',zh:'步驟',ko:'단계'}[L]} ${cur+1}/5</div><h3 style="font-size:20px">${s[0]}</h3>${s[1]}</div>`;
+const s=S[cur][L];document.getElementById('stepBox').innerHTML=`<div class="ill">${svg(cur)}</div><div class="card"><div class="muted">${{en:'Step',zh:'步驟',ko:'단계'}[L]} ${cur+1}/5</div><h3 class="stepT">${s[0]}</h3>${s[1]}</div>`;
 document.getElementById('nextB').innerHTML=cur==4?{en:'Done ✓',zh:'完成 ✓',ko:'완료 ✓'}[L]:{en:'Next ›',zh:'下一步 ›',ko:'다음 ›'}[L]}
 const H2ID={home:'home',guide:'guide',payment:'pay',pay:'pay',connectors:'conn',conn:'conn',find:'find',rules:'rules',faq:'faq',emergency:'sos',sos:'sos'};
 const ID2H={home:'home',guide:'guide',pay:'payment',conn:'connectors',find:'find',rules:'rules',faq:'faq',sos:'emergency'};
@@ -193,7 +260,7 @@ function parse(hash){const m=(hash||'').replace(/^#/,'').split('/');const id=H2I
 let st=id=='guide'?Math.max(0,Math.min(4,(parseInt(m[1])||1)-1)):0;return{s:id,st}}
 function show(id,st){scr=id;if(id=='guide'){cur=st||0;render()}
 document.querySelectorAll('.screen').forEach(e=>e.classList.toggle('on',e.id==id));
-document.getElementById('back').style.visibility=id=='home'?'hidden':'visible';title();
+document.getElementById('back').style.display=id=='home'?'none':'';title();
 document.getElementById('phone').scrollTop=0;window.scrollTo(0,0)}
 function nav(id,st){st=st||0;const s=history.state||{i:0};const k=key(id,st);
 if(k==key(scr,cur)&&id!='guide'){return}
@@ -276,4 +343,6 @@ const E=encodeURIComponent;geoList.innerHTML=`<b>${t('list')}</b>`+stations.map(
 return `<div class="st"><span class="d">${km}</span><b>${esc(nm)}</b><div class="muted">${s.con.length?esc(s.con.join(' · ')):t('unk')}${s.op?' · '+t('op')+': '+esc(s.op):''}</div>
 <div class="nav2"><a target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${s.lat},${s.lng}">${t('nav')} · Google</a><a target="_blank" rel="noopener" href="https://map.naver.com/p/search/${E(nm)}?c=${s.lng},${s.lat},17,0,0,0,dh">Naver</a><a target="_blank" rel="noopener" href="https://map.kakao.com/link/to/${E(nm)},${s.lat},${s.lng}">Kakao</a></div></div>`}).join('')+`<p class="muted">${t('src')}</p>`}
 showMaps(null);
+if('scrollRestoration' in history)history.scrollRestoration='manual';
+addEventListener('load',()=>setTimeout(()=>{window.scrollTo(0,0);document.getElementById('phone').scrollTop=0},0));
 </script></body></html>
