@@ -220,7 +220,11 @@ addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;if(!standalon
 addEventListener('appinstalled',()=>{dp=null;instA.classList.remove('on')});
 function doInstall(){if(!dp)return;dp.prompt();dp.userChoice.finally(()=>{dp=null;instA.classList.remove('on')})}
 if(!standalone&&/iphone|ipad|ipod/i.test(navigator.userAgent)&&!window.MSStream)instI.classList.add('on');
-if('serviceWorker' in navigator&&location.protocol!='file:')navigator.serviceWorker.register('sw.js').catch(()=>{});
+if('serviceWorker' in navigator&&location.protocol!='file:'){
+const hadCtrl=!!navigator.serviceWorker.controller;let reloaded=false;
+navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!hadCtrl||reloaded)return;reloaded=true;location.reload()});
+navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(reg=>{reg.update().catch(()=>{});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState=='visible')reg.update().catch(()=>{})})}).catch(()=>{})}
 
 const GT={
 ask:{en:'Getting your location…',zh:'正在取得位置…',ko:'위치를 확인하는 중…'},
