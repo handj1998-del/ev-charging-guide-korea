@@ -1,5 +1,5 @@
 // Bump VERSION on every deploy.
-const VERSION = 'ev-v9';
+const VERSION = 'ev-v10';
 const FONT_CACHE = 'ev-fonts-v1'; // kept across versions
 const FONT_HOSTS = ['cdn.jsdelivr.net', 'fonts.googleapis.com', 'fonts.gstatic.com'];
 const ASSETS = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './icon-maskable-512.png', './apple-touch-icon.png'];

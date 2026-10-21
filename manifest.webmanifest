@@ -1,7 +1,7 @@
 {
   "name": "EV Charging Korea",
   "short_name": "EV Korea",
-  "description": "Guide for foreigners charging EVs in Korea (EN / 繁中 / 日本語 / 한국어)",
+  "description": "Guide for foreigners charging EVs in Korea (EN / 繁中 / 简中 / 日本語 / 한국어)",
   "id": "./",
   "start_url": "./",
   "scope": "./",
