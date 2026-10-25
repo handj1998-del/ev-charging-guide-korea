@@ -44,18 +44,12 @@ header h1{flex:1;min-width:0;margin:0;font-size:var(--fs-lg);font-weight:700;lin
 .back:active{background:var(--pt)}
 .sos{flex:none;height:44px;min-width:64px;padding:0 14px;border:0;border-radius:999px;background:var(--rt);color:var(--r);font-weight:800;font-size:14px;letter-spacing:.04em;cursor:pointer;position:relative}
 .sos::before{content:"";position:absolute;inset:-4px 0}
-.langbar{padding:14px var(--pad) 0;display:flex;justify-content:flex-end}
-.lbtn{display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 14px 0 12px;border:1px solid #dfe4ec;border-radius:999px;background:#fff;color:var(--t);font:inherit;font-weight:600;font-size:15px;cursor:pointer;box-shadow:0 1px 2px rgba(15,23,42,.06)}
-.lbtn svg{width:20px;height:20px;flex:none;color:var(--p)}.lbtn .cv{width:16px;height:16px;color:var(--m)}
-.lsheet{position:fixed;inset:0;z-index:50;display:flex;align-items:flex-end;justify-content:center;background:rgba(15,23,42,.45)}
-.lsheet[hidden]{display:none}
-.lpanel{width:100%;max-width:520px;max-height:88vh;overflow:auto;background:#fff;border-radius:20px 20px 0 0;padding:8px 12px calc(12px + env(safe-area-inset-bottom));box-shadow:0 -8px 30px rgba(15,23,42,.2)}
-.lhead{display:flex;align-items:center;justify-content:space-between;padding:6px 6px 6px 10px}.lhead b{font-size:17px}
-.lx{width:48px;height:48px;border:0;background:none;border-radius:12px;font-size:22px;color:var(--m);cursor:pointer}
-.lopt{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:52px;padding:0 14px;border:0;border-radius:12px;background:none;font:inherit;font-size:16.5px;font-weight:600;color:var(--t);text-align:left;cursor:pointer}
-.lopt small{display:block;font-size:12.5px;font-weight:500;color:var(--m)}
-.lopt.on{background:var(--pt);color:var(--p2)}.lopt .ck{visibility:hidden;font-size:18px}.lopt.on .ck{visibility:visible}
-.lopt:focus-visible,.lbtn:focus-visible{outline:2px solid var(--p);outline-offset:2px}
+.langbar{padding:14px var(--pad) 0}
+.lang{display:grid;grid-template-columns:repeat(4,1fr);gap:3px;padding:3px;border-radius:12px;background:#e4e8ef}
+.lang button{height:46px;border:0;border-radius:9px;background:none;color:var(--m);font:inherit;font-weight:600;font-size:14px;cursor:pointer;padding:0 2px;white-space:nowrap;min-width:0;letter-spacing:0}
+.lang button.on{background:#fff;color:var(--t);font-weight:700;box-shadow:0 1px 2px rgba(15,23,42,.1),0 0 0 1px rgba(15,23,42,.04)}
+.lang button:focus-visible{outline:2px solid var(--p);outline-offset:1px}
+.lang button[lang=th]{font-family:"Noto Sans Thai",Tahoma,sans-serif}.lang button[lang=vi]{font-family:"Noto Sans",sans-serif;font-size:13.5px}
 main{padding:20px var(--pad) 40px}.screen{display:none}.screen.on{display:block;animation:fade .18s ease}
 @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 /* home */
@@ -142,8 +136,7 @@ a.call::after{grid-column:3;grid-row:1/3}
 <h1 id="ttl"></h1>
 
 <button class="sos" onclick="go('sos')">SOS</button></header>
-<div class="langbar"><button class="lbtn" id="lbtn" onclick="openL()" aria-haspopup="dialog" aria-label="Language"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg><span id="lcur">English</span><svg class="cv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button></div>
-<div class="lsheet" id="lsheet" hidden onclick="if(event.target===this)closeL()"><div class="lpanel" role="dialog" aria-modal="true" aria-labelledby="lh"><div class="lhead"><b id="lh">🌐 Language</b><button class="lx" onclick="closeL()" aria-label="Close">✕</button></div><button class="lopt" data-l="en" lang="en" onclick="pickL('en')"><span>English<small>English</small></span><span class="ck">✓</span></button><button class="lopt" data-l="zh" lang="zh-Hant" onclick="pickL('zh')"><span>繁體中文<small>Traditional Chinese</small></span><span class="ck">✓</span></button><button class="lopt" data-l="cn" lang="zh-Hans" onclick="pickL('cn')"><span>简体中文<small>Simplified Chinese</small></span><span class="ck">✓</span></button><button class="lopt" data-l="ja" lang="ja" onclick="pickL('ja')"><span>日本語<small>Japanese</small></span><span class="ck">✓</span></button><button class="lopt" data-l="ko" lang="ko" onclick="pickL('ko')"><span>한국어<small>Korean</small></span><span class="ck">✓</span></button><button class="lopt" data-l="ms" lang="ms" onclick="pickL('ms')"><span>Bahasa Melayu<small>Malay</small></span><span class="ck">✓</span></button><button class="lopt" data-l="vi" lang="vi" onclick="pickL('vi')"><span>Tiếng Việt<small>Vietnamese</small></span><span class="ck">✓</span></button><button class="lopt" data-l="th" lang="th" onclick="pickL('th')"><span>ไทย<small>Thai</small></span><span class="ck">✓</span></button></div></div>
+<div class="langbar"><div class="lang" role="group" aria-label="Language"><button data-l="en" lang="en" onclick="setL('en')">EN</button><button data-l="zh" lang="zh-Hant" onclick="setL('zh')">繁中</button><button data-l="cn" lang="zh-Hans" onclick="setL('cn')">简中</button><button data-l="ja" lang="ja" onclick="setL('ja')">日本語</button><button data-l="ko" lang="ko" onclick="setL('ko')">한국어</button><button data-l="ms" lang="ms" onclick="setL('ms')">Melayu</button><button data-l="vi" lang="vi" onclick="setL('vi')">Tiếng Việt</button><button data-l="th" lang="th" onclick="setL('th')">ไทย</button></div></div>
 <main>
 
 <!-- HOME -->
@@ -300,16 +293,10 @@ function step(d){if(d>0&&cur==4){nav('home');return}if(d<0&&cur==0){goBack();ret
 window.addEventListener('popstate',e=>{const s=e.state||parse(location.hash)||{s:'home',st:0};show(s.s,s.st)});
 function title(){document.getElementById('ttl').textContent=document.getElementById(scr).dataset[L]}
 function normL(x){x=String(x||'').toLowerCase();if(/^zh-(cn|sg|my|hans)/.test(x)||x=='cn')return'cn';if(/^zh/.test(x))return'zh';if(x=='zsm'||x=='may'||x=='msa')return'ms';return['en','ja','ko','ms','vi','th'].includes(x.slice(0,2))?x.slice(0,2):''}
-const LS=['zh','cn','ja','ko','ms','vi','th'],NN={en:'English',zh:'繁體中文',cn:'简体中文',ja:'日本語',ko:'한국어',ms:'Bahasa Melayu',vi:'Tiếng Việt',th:'ไทย'},LH={en:'Language',zh:'語言',cn:'语言',ja:'言語',ko:'언어',ms:'Bahasa',vi:'Ngôn ngữ',th:'ภาษา'};let PL=null;
-function openL(){const sh=document.getElementById('lsheet');sh.hidden=false;history.pushState(Object.assign({},history.state||{s:scr,st:0,i:0},{lg:1}),'');(sh.querySelector('.lopt.on')||sh.querySelector('.lopt')).focus()}
-function hideL(){const sh=document.getElementById('lsheet');if(sh.hidden)return;sh.hidden=true;if(PL){const p=PL;PL=null;setL(p)}document.getElementById('lbtn').focus()}
-function closeL(){if(history.state&&history.state.lg)history.back();else hideL()}
-function pickL(l){PL=l;closeL()}
-window.addEventListener('popstate',e=>{if(!(e.state&&e.state.lg))hideL()});
-document.addEventListener('keydown',e=>{if(e.key=='Escape'&&!document.getElementById('lsheet').hidden)closeL()});
+const LS=['zh','cn','ja','ko','ms','vi','th'],NN={en:'English',zh:'繁體中文',cn:'简体中文',ja:'日本語',ko:'한국어',ms:'Bahasa Melayu',vi:'Tiếng Việt',th:'ไทย'},LH={en:'Language',zh:'語言',cn:'语言',ja:'言語',ko:'언어',ms:'Bahasa',vi:'Ngôn ngữ',th:'ภาษา'};
 const QL={en:'en',zh:'zh',cn:'zh-cn',ja:'ja',ms:'ms',vi:'vi',th:'th',ko:'ko'};
 function setL(l){l=normL(l)||'en';L=l;LS.forEach(x=>document.body.classList.toggle(x,l==x));document.documentElement.lang={en:'en',zh:'zh-Hant',cn:'zh-Hans',ja:'ja',ms:'ms',vi:'vi',th:'th',cn:'zh-Hans',ko:'ko'}[l];
-document.getElementById('lcur').textContent=NN[l];document.getElementById('lh').textContent='🌐 '+LH[l]+(l=='en'?'':' · Language');document.querySelectorAll('.lopt').forEach(b=>{b.classList.toggle('on',b.dataset.l==l);b.setAttribute('aria-current',b.dataset.l==l)});title();render();document.querySelectorAll('a[data-intl]').forEach(a=>a.href=l=='ko'?a.dataset.dom:a.dataset.intl);try{localStorage.lang=l}catch(e){}
+document.querySelectorAll('.lang button').forEach(b=>{b.classList.toggle('on',b.dataset.l==l);b.setAttribute('aria-pressed',b.dataset.l==l)});title();render();document.querySelectorAll('a[data-intl]').forEach(a=>a.href=l=='ko'?a.dataset.dom:a.dataset.intl);try{localStorage.lang=l}catch(e){}
 const q=new URLSearchParams(location.search);if(q.get('lang')&&q.get('lang')!=QL[l]){q.set('lang',QL[l]);history.replaceState(history.state,'',location.pathname+'?'+q+location.hash)}}
 const q=new URLSearchParams(location.search);render();
 setL(normL(q.get('lang'))||normL((()=>{try{return localStorage.lang}catch(e){}})())||normL(navigator.language)||'en');
