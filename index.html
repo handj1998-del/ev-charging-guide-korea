@@ -378,10 +378,10 @@ function locate(){if(!('geolocation' in navigator)){setMsg('nosupport');showMaps
 setMsg('ask');navigator.geolocation.getCurrentPosition(p=>{geo={lat:p.coords.latitude,lng:p.coords.longitude};renderGeo()},
 e=>{setMsg(e.code==1?'denied':e.code==3?'timeout':'unavail');showMaps(null)},{enableHighAccuracy:true,timeout:15000,maximumAge:60000})}
 function showMaps(g){const la=g&&g.lat.toFixed(5),ln=g&&g.lng.toFixed(5);const E=encodeURIComponent;
-const M=g?[['Google Maps',`https://www.google.com/maps/search/${E('EV charging station')}/@${la},${ln},15z`],
+const M=g?[['Google Maps',`https://www.google.com/maps/search/${E('전기차 충전소')}/@${la},${ln},15z`],
 ['Naver Map',`https://map.naver.com/p/search/${E('전기차 충전소')}?c=${ln},${la},15,0,0,0,dh`],
 ['Kakao Map',`https://map.kakao.com/link/search/${E('전기차충전소')}`]]
-:[['Google Maps',`https://www.google.com/maps/search/${E('EV charging station')}`],['Naver Map',`https://map.naver.com/p/search/${E('전기차 충전소')}`],['Kakao Map',`https://map.kakao.com/link/search/${E('전기차충전소')}`]];
+:[['Google Maps',`https://www.google.com/maps/search/${E('전기차 충전소')}`],['Naver Map',`https://map.naver.com/p/search/${E('전기차 충전소')}`],['Kakao Map',`https://map.kakao.com/link/search/${E('전기차충전소')}`]];
 mapBtns.innerHTML=M.map(([n,u])=>`<a href="${esc(u)}" target="_blank" rel="noopener">${n}</a>`).join('');geoMaps.style.display='block'}
 function renderGeo(){if(geoState&&GT[geoState])geoMsg.textContent=t(geoState);
 if(!geo)return;geoMsg.textContent=`${t('found')}: ${geo.lat.toFixed(4)}, ${geo.lng.toFixed(4)}`;showMaps(geo);
