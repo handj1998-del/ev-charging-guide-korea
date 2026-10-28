@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0a7cff">
-<link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="mobile-web-app-capable" content="yes">
@@ -242,8 +241,6 @@ details[open]{box-shadow:var(--sh3),0 0 0 1px var(--pb)}
 <button class="tile" onclick="go('find');locate()"><span class="i"><svg class="ic" aria-hidden="true"><use href="#i-nav"/></svg></span><span><span class="en">Near me: chargers around you</span><span class="zh">附近充電站</span><span class="cn">附近充电站</span><span class="ja">近くの充電スポット</span><span class="ms">Berdekatan: pengecas di sekitar anda</span><span class="vi">Gần tôi: trạm sạc quanh bạn</span><span class="th">ใกล้ฉัน: สถานีชาร์จรอบตัวคุณ</span><span class="ko">내 주변 충전소</span></span></button></div>
 <button class="sosRow" onclick="go('sos')"><span class="i"><svg class="ic" aria-hidden="true"><use href="#i-sos"/></svg></span><span class="en">Emergency & help</span><span class="zh">緊急與求助</span><span class="cn">紧急求助</span><span class="ja">緊急連絡・ヘルプ</span><span class="ms">Kecemasan & bantuan</span><span class="vi">Khẩn cấp & trợ giúp</span><span class="th">เหตุฉุกเฉินและความช่วยเหลือ</span><span class="ko">긴급 연락·도움</span></button><div>
 </div>
-<div class="inst" id="instA"><button onclick="doInstall()"><svg class="ic" aria-hidden="true"><use href="#i-dl"/></svg><span class="en">Install app</span><span class="zh">安裝 App</span><span class="cn">安装 App</span><span class="ja">アプリをインストール</span><span class="ms">Pasang aplikasi</span><span class="vi">Cài ứng dụng</span><span class="th">ติดตั้งแอป</span><span class="ko">앱 설치</span></button></div>
-<div class="inst" id="instI"><div class="ios"><svg class="ic" aria-hidden="true"><use href="#i-dl"/></svg><b><span class="en">Install on iPhone</span><span class="zh">安裝到 iPhone</span><span class="cn">安装到 iPhone</span><span class="ja">iPhoneにインストール</span><span class="ms">Pasang pada iPhone</span><span class="vi">Cài trên iPhone</span><span class="th">ติดตั้งบน iPhone</span><span class="ko">iPhone에 설치</span></b><br>
 <span class="en">In Safari, tap Share <b>⬆︎</b> → <b>Add to Home Screen</b>.</span><span class="zh">在 Safari 點「分享」<b>⬆︎</b> → <b>加入主畫面</b>。</span><span class="cn">在 Safari 点“分享” <b>⬆︎</b> → <b>添加到主屏幕</b>。</span><span class="ja">Safariで共有 <b>⬆︎</b> → <b>ホーム画面に追加</b> をタップしてください。</span><span class="ms">Dalam Safari, ketik Kongsi <b>⬆︎</b> → <b>Tambah ke Skrin Utama</b>.</span><span class="vi">Trong Safari, chạm Chia sẻ <b>⬆︎</b> → <b>Thêm vào Màn hình chính</b>.</span><span class="th">ใน Safari แตะแชร์ <b>⬆︎</b> → <b>เพิ่มไปยังหน้าจอโฮม</b></span><span class="ko">Safari에서 공유 <b>⬆︎</b> → <b>홈 화면에 추가</b>를 누르세요.</span></div></div>
 <p class="muted foot"><span class="en">Information last checked: 2026-10-20 · This app is a guide and does not process payments.</span><span class="zh">資訊最後確認：2026-10-20 · 本 App 僅提供指南，不代為付款。</span><span class="cn">信息最后核对：2026-10-20 · 本 App 仅提供指引，不代为支付。</span><span class="ja">情報最終確認日：2026-10-20 · 本アプリは案内用で、決済は行いません。</span><span class="ms">Maklumat kali terakhir disemak: 2026-10-20 · Aplikasi ini hanya panduan dan tidak memproses pembayaran.</span><span class="vi">Thông tin kiểm tra lần cuối: 2026-10-20 · Ứng dụng này chỉ là hướng dẫn và không xử lý thanh toán.</span><span class="th">ตรวจสอบข้อมูลล่าสุด: 2026-10-20 · แอปนี้เป็นเพียงคู่มือ ไม่ได้ดำเนินการชำระเงิน</span><span class="ko">정보 최종 확인일: 2026-10-20 · 이 앱은 안내용이며 결제를 대신 처리하지 않습니다.</span></p>
 </section>
@@ -392,11 +389,8 @@ if(hs&&hs.s){show(hs.s,hs.st);return}
 history.replaceState({s:'home',st:0,i:0},'',url('home'));show('home');
 if(t&&t.s!='home'){history.pushState({s:t.s,st:t.st,i:1,p:'home'},'',url(key(t.s,t.st)));show(t.s,t.st)}})();
 
+addEventListener('beforeinstallprompt',e=>{e.preventDefault()});
 let dp=null;const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
-addEventListener('beforeinstallprompt',e=>{e.preventDefault();dp=e;if(!standalone)instA.classList.add('on')});
-addEventListener('appinstalled',()=>{dp=null;instA.classList.remove('on')});
-function doInstall(){if(!dp)return;dp.prompt();dp.userChoice.finally(()=>{dp=null;instA.classList.remove('on')})}
-if(!standalone&&/iphone|ipad|ipod/i.test(navigator.userAgent)&&!window.MSStream)instI.classList.add('on');
 if('serviceWorker' in navigator&&location.protocol!='file:'){
 const hadCtrl=!!navigator.serviceWorker.controller;let reloaded=false;
 navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!hadCtrl||reloaded)return;reloaded=true;location.reload()});
